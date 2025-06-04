@@ -1,5 +1,5 @@
 const tracks = [{
-	title: "waqs - Tears",
+	title: "waqs - слёзы",
 	src: "/assets/music/song1.mp3",
 	cover: "/assets/music/song1img.jpg"
 
