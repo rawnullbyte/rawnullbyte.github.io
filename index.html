@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@vile</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta name="theme-color" content="#db0000">
+  <title>@vile</title>
+  <meta name="description" content="why am i in here???">
+  <meta name="author" content="@vile">
+  <meta property="og:title" content="@vile">
+  <meta property="og:description" content="why am i in discord???">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="@vile">
+  <meta name="twitter:description" content="why am i in twitter???">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <img src="/assets/bg.gif" alt="Background GIF" class="bg-video" />
+  <div class="overlay"></div>
+  <div class="landing blur-effect">
+    <div class="click-to-enter">
+      <p class="enter-text">Click to Enter...</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="profile-pic">
+      <img src="/assets/pfp.png" alt="Profile Picture" />
+    </div>
+    <h1 class="main-title">vile</h1>
+    <p class="subtitle">
+      <span class="text"></span>
+    </p>
+    <div class="player">
+      <div class="track-info">
+        <img id="track-cover" src="/assets/music/song1img.png" alt="Song Cover" class="track-cover">
+        <span id="track-name" class="track-name">Song 1</span>
+      </div>
+      <div class="progress-container">
+        <span class="current-time">0:00</span>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <span class="duration">0:00</span>
+      </div>
+      <audio id="audio-player">
+        <source id="audio-source" src="/assets/music/song1.mp3" type="audio/mp3" /> Your browser does not support the
+        audio element.
+      </audio>
+      <div class="player-controls">
+        <button id="prev-btn" class="player-btn"><i class="fas fa-backward"></i></button>
+        <button id="play-btn" class="player-btn"><i class="fas fa-play"></i></button>
+        <button id="next-btn" class="player-btn"><i class="fas fa-forward"></i></button>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="https://github.com/vileforgotten" target="_blank" class="social-link">
+        <div class="social-icon">
+          <i class="fab fa-github"></i>
+        </div>
+        <span>GitHub</span>
+      </a>
+
+      <a href="https://discord.com/users/1141410046996135946" target="_blank" class="social-link">
+        <div class="social-icon">
+          <i class="fab fa-discord"></i>
+        </div>
+        <span>Discord</span>
+      </a>
+
+      <a href="https://t.me/lolipusher" target="_blank" class="social-link">
+        <div class="social-icon">
+          <i class="fab fa-telegram"></i>
+        </div>
+        <span>Telegram</span>
+      </a>
+    </div>
+  </div>
+  <script src="scripts/pageViews.js"></script>
+  <script src="scripts/musicPlayer.js"></script>
+  <script src="scripts/typingEffect.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"94a8618b1a43f9a0","version":"2025.5.0","r":1,"token":"aa7a9fd2a5c34c7d812ae5e90bd7be78","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+</body>
+
+</html>
