@@ -1,7 +1,8 @@
 const tracks = [{
-	title: "waqs - sakura",
+	title: "waqs - Tears",
 	src: "/assets/music/song1.mp3",
-	cover: "/assets/music/song1img.png"
+	cover: "/assets/music/song1img.jpg"
+
 }, {
 	title: "waqs - Pump Up The Volume Genocide",
 	src: "/assets/music/song2.mp3",
@@ -11,7 +12,7 @@ const tracks = [{
 	src: "/assets/music/song3.mp3",
 	cover: "/assets/music/song3img.jpg"
 }, {
-	title: "waqs - Tears",
+	title: "waqs - sakura",
 	src: "/assets/music/song4.mp3",
 	cover: "/assets/music/song4img.png"
 }];
