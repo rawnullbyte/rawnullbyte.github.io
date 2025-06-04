@@ -1,7 +1,7 @@
 const tracks = [{
 	title: "kattmynta - whatever",
-	src: "/assets/music/whatever.mp3",
-	cover: "/assets/music/whateverimg.jpg"
+	src: "/assets/music/song3.mp3",
+	cover: "/assets/music/song3img.jpg"
 }, {
 	title: "waqs - sakura",
 	src: "/assets/music/song1.mp3",
