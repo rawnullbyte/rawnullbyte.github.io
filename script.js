@@ -95,19 +95,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  const startMessage = "Click here to see the motion baby";
-  let startTextContent = '';
-  let startIndex = 0;
-  let startCursorVisible = true;
+ // Queste variabili devono essere dichiarate all'inizio del tuo document.addEventListener('DOMContentLoaded', ...
+// NON all'interno della funzione typeWriterStart()!
 
-  function typeWriterStart() {
+const startMessage = "Click here";
+let startTextContent = 'Click here';
+let startIndex = 0;
+let startCursorVisible = true;
+let startTypingTimeout; // Per la ricorsione della digitazione
+let startCursorInterval; // Per il lampeggio del cursore
+
+function typeWriterStart() {
     if (startIndex < startMessage.length) {
-      startTextContent = startMessage.slice(0, startIndex + 1);
-      startIndex++;
+        startTextContent = startMessage.slice(0, startIndex + 1);
+        startIndex++;
+        // Continua a digitare
+        startTypingTimeout = setTimeout(typeWriterStart, 100);
+    } else {
+        // Se la digitazione è finita, potresti voler fermare l'intervallo di digitazione se non serve più
+        // In questo caso, il setTimeout ricorsivo è la digitazione stessa, quindi non serve un clearTimeout qui
     }
+    // Aggiorna il testo e il cursore
     startText.textContent = startTextContent + (startCursorVisible ? '|' : ' ');
-    setTimeout(typeWriterStart, 100);
-  }
+}
+
+// Infine, assicurati che typeWriterStart() venga chiamata per la prima volta SOLO qui (alla fine del DOMContentLoaded)
+  typeWriterStart();
 
 
   setInterval(() => {
@@ -119,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function initializeVisitorCounter() {
     let totalVisitors = localStorage.getItem('totalVisitorCount');
     if (!totalVisitors) {
-      totalVisitors = 921234;
+      totalVisitors = 19,421;
       localStorage.setItem('totalVisitorCount', totalVisitors);
     } else {
       totalVisitors = parseInt(totalVisitors);
@@ -165,8 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Failed to initialize cursor trail effect:", err);
       }
     }
-    typeWriterName();
-    typeWriterBio();
+    // typeWriterName();
+    // typeWriterBio();
   });
 
   startScreen.addEventListener('touchstart', (e) => {
@@ -201,45 +214,51 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  const name = "JAQLIV";
-  let nameText = '';
-  let nameIndex = 0;
-  let isNameDeleting = false;
-  let nameCursorVisible = true;
+// const name = "LITEX.ANGEL"; // You can keep this if you want the string for reference
+// let nameText = '';
+// let nameIndex = 0;
+// let isNameDeleting = false;
+// let nameCursorVisible = true;
 
-  function typeWriterName() {
-    if (!isNameDeleting && nameIndex < name.length) {
-      nameText = name.slice(0, nameIndex + 1);
-      nameIndex++;
-    } else if (isNameDeleting && nameIndex > 0) {
-      nameText = name.slice(0, nameIndex - 1);
-      nameIndex--;
-    } else if (nameIndex === name.length) {
-      isNameDeleting = true;
-      setTimeout(typeWriterName, 10000);
-      return;
-    } else if (nameIndex === 0) {
-      isNameDeleting = false;
-    }
-    profileName.textContent = nameText + (nameCursorVisible ? '|' : ' ');
-    if (Math.random() < 0.1) {
-      profileName.classList.add('glitch');
-      setTimeout(() => profileName.classList.remove('glitch'), 200);
-    }
-    setTimeout(typeWriterName, isNameDeleting ? 150 : 300);
-  }
+// function typeWriterName() {
+//   if (!isNameDeleting && nameIndex < name.length) {
+//     nameText = name.slice(0, nameIndex + 1);
+//     nameIndex++;
+//   } else if (isNameDeleting && nameIndex > 0) {
+//     nameText = name.slice(0, nameIndex - 1);
+//     nameIndex--;
+//   } else if (nameIndex === name.length) {
+//     isNameDeleting = true;
+//     setTimeout(typeWriterName, 10000);
+//     return;
+//   } else if (nameIndex === 0) {
+//     isNameDeleting = false;
+//   }
+//   profileName.textContent = nameText + (nameCursorVisible ? '|' : ' ');
+//   // Remove or comment out the glitch effect if you don't want it
+//   /*
+//   if (Math.random() < 0.1) {
+//     profileName.classList.add('glitch');
+//     setTimeout(() => profileName.classList.remove('glitch'), 200);
+//   }
+//   */
+//   setTimeout(typeWriterName, isNameDeleting ? 150 : 300);
+// }
 
-  setInterval(() => {
-    nameCursorVisible = !nameCursorVisible;
-    profileName.textContent = nameText + (nameCursorVisible ? '|' : ' ');
-  }, 500);
+// Remove or comment out this setInterval if you don't want the blinking cursor
+/*
+// setInterval(() => {
+//   nameCursorVisible = !nameCursorVisible;
+//   profileName.textContent = nameText + (nameCursorVisible ? '|' : ' ');
+// }, 500);
+*/
 
 
   const bioMessages = [
-    "Fu*k Guns.lol & Fakecrime.bio got banned too often, so I created my own.",
+    "",
     "\"Hello, World!\""
   ];
-  let bioText = '';
+  let bioText = 'carpe diem...';
   let bioIndex = 0;
   let bioMessageIndex = 0;
   let isBioDeleting = false;
