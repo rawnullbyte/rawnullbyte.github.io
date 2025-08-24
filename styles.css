@@ -130,7 +130,7 @@ body {
 
 .profile-pic img {
   width: 100%;
-  height: calc(100% + 2px);
+  height: 100%;
   object-fit: cover;
   position: absolute;
   top: -1px;
@@ -348,11 +348,6 @@ body {
     padding-bottom: 2.5rem;
   }
 
-  .profile-pic {
-    width: 200px;
-    height: 100px;
-  }
-
   .main-title {
     font-size: 2.5rem;
   }
@@ -424,11 +419,6 @@ body {
 
   .container {
     padding-bottom: 3.5rem;
-  }
-
-  .profile-pic {
-    width: 180px;
-    height: 90px;
   }
 
   .main-title {
