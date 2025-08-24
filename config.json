@@ -1,0 +1,108 @@
+{
+  "name": "NullByte",
+  "bio": "Demon Lord of Code | Cyberpunk Samurai | Breaking Reality.exe",
+  "avatar": "/placeholder.svg?height=120&width=120",
+  "background": {
+    "type": "image",
+    "url": "/placeholder.svg?height=1080&width=1920"
+  },
+  "music": "/placeholder.mp3?query=cyberpunk synthwave electronic music",
+  "cursor": {
+    "type": "custom",
+    "color": "#84cc16"
+  },
+  "stats": {
+    "Repos": "42",
+    "Commits": "1337",
+    "Coffee": "∞"
+  },
+  "links": [
+    {
+      "title": "💀 GitHub Realm",
+      "url": "https://github.com/nullbyte",
+      "icon": "💻",
+      "description": "Where code goes to die and be reborn",
+      "color": "primary"
+    },
+    {
+      "title": "🌐 Digital Fortress",
+      "url": "https://nullbyte.dev",
+      "icon": "🏰",
+      "description": "My cyberpunk portfolio domain",
+      "color": "accent"
+    },
+    {
+      "title": "📱 Neural Link",
+      "url": "https://twitter.com/nullbyte2099",
+      "icon": "🧠",
+      "description": "Thoughts transmitted directly to the matrix",
+      "color": "secondary"
+    },
+    {
+      "title": "🎮 Gaming Nexus",
+      "url": "https://twitch.tv/nullbyte",
+      "icon": "🕹️",
+      "description": "Live coding in the digital realm",
+      "color": "chart-1"
+    },
+    {
+      "title": "💰 Support the Cause",
+      "url": "https://ko-fi.com/nullbyte",
+      "icon": "☕",
+      "description": "Fuel the cyberpunk revolution",
+      "color": "chart-2"
+    },
+    {
+      "title": "📧 Encrypted Comms",
+      "url": "mailto:nullbyte@protonmail.com",
+      "icon": "🔐",
+      "description": "Secure communications only",
+      "color": "muted"
+    }
+  ],
+  "socials": [
+    {
+      "platform": "github",
+      "url": "https://github.com/nullbyte",
+      "icon": "💻"
+    },
+    {
+      "platform": "twitter",
+      "url": "https://twitter.com/nullbyte2099",
+      "icon": "🐦"
+    },
+    {
+      "platform": "discord",
+      "url": "https://discord.gg/nullbyte",
+      "icon": "💬"
+    },
+    {
+      "platform": "twitch",
+      "url": "https://twitch.tv/nullbyte",
+      "icon": "📺"
+    },
+    {
+      "platform": "youtube",
+      "url": "https://youtube.com/nullbyte",
+      "icon": "📹"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://linkedin.com/in/nullbyte",
+      "icon": "💼"
+    }
+  ],
+  "theme": {
+    "primaryColor": "#15803d",
+    "accentColor": "#84cc16",
+    "backgroundColor": "#1f2937",
+    "textColor": "#ffffff"
+  },
+  "animations": {
+    "matrixRain": true,
+    "glitchText": true,
+    "neonGlow": true,
+    "cursorTrail": true
+  },
+  "footer": "Powered by CyberLink v2.1 | Reality.exe has stopped working"
+}
