@@ -3,71 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NullByte - Cyberpunk Biolink</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title id="page-title">Takahashi | Demon Lord 2099</title>
+    <meta name="description" id="page-description" content="Cyberpunk hacker and digital architect from the year 2099">
+    <link rel="icon" id="favicon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
-</head>
-<body class="custom-cursor font-sans">
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'opensans': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        background: 'oklch(0.11 0.02 240)',
+                        foreground: 'oklch(0.98 0 0)',
+                        card: 'oklch(0.16 0.02 240)',
+                        'card-foreground': 'oklch(0.98 0 0)',
+                        primary: 'oklch(0.65 0.25 25)',
+                        'primary-foreground': 'oklch(0.98 0 0)',
+                        secondary: 'oklch(0.35 0.02 240)',
+                        'secondary-foreground': 'oklch(0.98 0 0)',
+                        muted: 'oklch(0.16 0.02 240)',
+                        'muted-foreground': 'oklch(0.7 0 0)',
+                        accent: 'oklch(0.65 0.25 25)',
+                        'accent-foreground': 'oklch(0.98 0 0)',
+                        border: 'oklch(0.35 0.02 240)',
+                    },
+                    animation: {
+                        'glow': 'glow 2s ease-in-out infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'slide-in-left': 'slideInLeft 0.6s ease-out',
+                        'fade-in-up': 'fadeInUp 0.6s ease-out',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%, 100%': { boxShadow: '0 0 5px #ea580c, 0 0 10px #ea580c, 0 0 15px #ea580c' },
+                            '50%': { boxShadow: '0 0 10px #ea580c, 0 0 20px #ea580c, 0 0 30px #ea580c' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        slideInLeft: {
+                            'from': { transform: 'translateX(-100%)', opacity: '0' },
+                            'to': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        fadeInUp: {
+                            'from': { transform: 'translateY(30px)', opacity: '0' },
+                            'to': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
     
-    <!-- Matrix Background -->
-    <div class="matrix-bg" id="matrixBg"></div>
-    
-    <!-- Audio Element -->
-    <audio id="bgMusic" loop>
-        <source src="" type="audio/mpeg">
-    </audio>
-    
-    <!-- Main Container -->
-    <div class="min-h-screen bg-background text-foreground relative overflow-hidden">
-        <!-- Background Video/Image -->
-        <div id="backgroundMedia" class="fixed inset-0 z-0 opacity-20"></div>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: 'Open Sans', sans-serif;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23ea580c" stroke-width="2"/><circle cx="10" cy="10" r="2" fill="%23ea580c"/></svg>'), auto;
+        }
         
-        <!-- Content -->
-        <div class="relative z-10 container mx-auto px-4 py-8 max-w-md">
-            <!-- Profile Section -->
-            <div class="text-center mb-8 animate-fade-in">
-                <div class="relative inline-block mb-4">
-                    <img id="profileImage" 
-                         src="/placeholder.svg?height=120&width=120" 
-                         alt="Profile" 
-                         class="w-30 h-30 rounded-full border-4 border-accent pulse-border mx-auto">
-                    <div class="absolute -top-2 -right-2 w-6 h-6 bg-accent rounded-full animate-pulse"></div>
+        .cursor-pointer {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><polygon points="10,2 18,18 10,14 2,18" fill="%23ea580c"/></svg>'), pointer;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(44, 44, 62, 0.3);
+            border: 1px solid rgba(234, 88, 12, 0.2);
+        }
+        
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3);
+        }
+        
+        .profile-image {
+            filter: drop-shadow(0 0 20px rgba(234, 88, 12, 0.5));
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 10px rgba(234, 88, 12, 0.8);
+        }
+        
+        .music-player {
+            background: linear-gradient(45deg, rgba(234, 88, 12, 0.1), rgba(44, 44, 62, 0.8));
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #ea580c;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f97316;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white overflow-x-hidden">
+    <!-- Background particles -->
+    <div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
+    
+    <!-- Main container -->
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
+        <!-- Profile section -->
+        <div class="w-full max-w-md mx-auto text-center mb-8 animate-fade-in-up">
+            <!-- Profile image -->
+            <div class="relative mb-6">
+                <img id="profile-image" 
+                     src="/placeholder.svg?height=120&width=120" 
+                     alt="Profile" 
+                     class="w-30 h-30 rounded-full mx-auto profile-image animate-float border-4 border-primary">
+                <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-primary rounded-full animate-glow flex items-center justify-center">
+                    <span class="text-xs">⚡</span>
                 </div>
-                
-                <h1 id="displayName" class="text-3xl font-bold mb-2 neon-text glitch" data-text="NullByte">NullByte</h1>
-                <p id="bio" class="text-muted-foreground mb-4 animate-pulse">Loading profile...</p>
-                
-                <!-- Stats -->
-                <div id="stats" class="flex justify-center space-x-6 text-sm text-muted-foreground mb-6">
-                    <!-- Stats will be populated by JavaScript -->
+            </div>
+            
+            <!-- Name and title -->
+            <h1 id="profile-name" class="text-3xl font-montserrat font-black mb-2 text-glow">Takahashi</h1>
+            <p id="profile-title" class="text-muted-foreground mb-4 font-opensans">Cyberpunk Hacker | Digital Architect</p>
+            <p id="profile-bio" class="text-sm text-muted-foreground max-w-xs mx-auto font-opensans">
+                Navigating the digital underworld of 2099. Code is my weapon, data is my domain.
+            </p>
+        </div>
+        
+        <!-- Music player -->
+        <div id="music-section" class="w-full max-w-md mx-auto mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+            <div class="music-player rounded-lg p-4 glass-effect">
+                <div class="flex items-center space-x-3">
+                    <button id="music-toggle" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center cursor-pointer hover:bg-orange-600 transition-colors">
+                        <span id="play-icon">▶</span>
+                    </button>
+                    <div class="flex-1">
+                        <p id="music-title" class="text-sm font-semibold">Neon Dreams</p>
+                        <p id="music-artist" class="text-xs text-muted-foreground">Cyberpunk 2099 OST</p>
+                    </div>
+                    <div class="text-xs text-muted-foreground">
+                        <span id="music-duration">3:42</span>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Links Container -->
-            <div id="linksContainer" class="space-y-4">
-                <!-- Links will be populated by JavaScript -->
-            </div>
-            
-            <!-- Social Links -->
-            <div id="socialContainer" class="flex justify-center space-x-4 mt-8">
-                <!-- Social links will be populated by JavaScript -->
-            </div>
-            
-            <!-- Footer -->
-            <div class="text-center mt-8 text-xs text-muted-foreground">
-                <p id="footerText">Powered by CyberLink v2.1</p>
+                <div class="mt-3 bg-secondary rounded-full h-1">
+                    <div id="music-progress" class="bg-primary h-1 rounded-full w-0 transition-all duration-300"></div>
+                </div>
             </div>
         </div>
         
-        <!-- Music Control -->
-        <button id="musicToggle" class="fixed bottom-4 right-4 w-12 h-12 bg-card border border-accent rounded-full flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all duration-300 pulse-border">
-            <span id="musicIcon">🎵</span>
-        </button>
+        <!-- Links section -->
+        <div id="links-container" class="w-full max-w-md mx-auto space-y-4">
+            <!-- Links will be populated by JavaScript -->
+        </div>
+        
+        <!-- Social links -->
+        <div id="social-container" class="w-full max-w-md mx-auto mt-8 flex justify-center space-x-6">
+            <!-- Social links will be populated by JavaScript -->
+        </div>
+        
+        <!-- Footer -->
+        <div class="mt-12 text-center">
+            <p class="text-xs text-muted-foreground font-opensans">
+                Powered by <span class="text-primary">Neural Networks</span> • 2099
+            </p>
+        </div>
     </div>
+    
+    <!-- Audio element for music -->
+    <audio id="background-music" loop>
+        <source id="music-source" src="/placeholder.svg" type="audio/mpeg">
+    </audio>
     
     <script src="script.js"></script>
 </body>

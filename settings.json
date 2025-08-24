@@ -1,0 +1,109 @@
+{
+  "profile": {
+    "name": "Takahashi",
+    "title": "Cyberpunk Hacker | Digital Architect",
+    "bio": "Navigating the digital underworld of 2099. Code is my weapon, data is my domain.",
+    "image": "/placeholder.svg?height=120&width=120",
+    "favicon": "⚡"
+  },
+  "theme": {
+    "cursor": "cyber",
+    "animations": true,
+    "particles": true,
+    "glowEffects": true,
+    "backgroundGradient": "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)"
+  },
+  "music": {
+    "enabled": true,
+    "title": "Neon Dreams",
+    "artist": "Cyberpunk 2099 OST",
+    "duration": "3:42",
+    "url": ""
+  },
+  "links": [
+    {
+      "title": "Neural Interface",
+      "url": "https://github.com/takahashi",
+      "icon": "🧠",
+      "description": "My digital consciousness repository"
+    },
+    {
+      "title": "Data Streams",
+      "url": "https://twitter.com/takahashi2099",
+      "icon": "📡",
+      "description": "Real-time thought broadcasts"
+    },
+    {
+      "title": "Encrypted Comms",
+      "url": "mailto:takahashi@cyberspace.net",
+      "icon": "🔐",
+      "description": "Secure communication channel"
+    },
+    {
+      "title": "Digital Portfolio",
+      "url": "https://takahashi.dev",
+      "icon": "💻",
+      "description": "Showcase of digital architectures"
+    },
+    {
+      "title": "Cyber Marketplace",
+      "url": "https://marketplace.cyber2099.net",
+      "icon": "🛒",
+      "description": "Digital goods and services"
+    },
+    {
+      "title": "Neural Blog",
+      "url": "https://blog.takahashi.net",
+      "icon": "📝",
+      "description": "Thoughts from the digital realm"
+    }
+  ],
+  "social": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/takahashi",
+      "icon": "💻"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/takahashi2099",
+      "icon": "🐦"
+    },
+    {
+      "platform": "Discord",
+      "url": "https://discord.gg/cyberpunk2099",
+      "icon": "💬"
+    },
+    {
+      "platform": "Telegram",
+      "url": "https://t.me/takahashi2099",
+      "icon": "✈️"
+    },
+    {
+      "platform": "Email",
+      "url": "mailto:takahashi@cyberspace.net",
+      "icon": "📧"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/takahashi-cyber",
+      "icon": "💼"
+    }
+  ],
+  "seo": {
+    "title": "Takahashi | Demon Lord 2099",
+    "description": "Cyberpunk hacker and digital architect from the year 2099. Neural interfaces, data streams, and digital consciousness.",
+    "keywords": "cyberpunk, hacker, digital architect, 2099, neural interface, data streams"
+  },
+  "analytics": {
+    "enabled": false,
+    "googleAnalyticsId": "",
+    "plausibleDomain": ""
+  },
+  "customization": {
+    "showFooter": true,
+    "showMusicPlayer": true,
+    "maxLinks": 10,
+    "socialIconsPerRow": 6
+  }
+}
