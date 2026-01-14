@@ -9,24 +9,25 @@
   } */
 
 body {
-    font-family: 'Chillax', sans-serif !important;
+	font-family: 'Chillax', sans-serif !important;
 	width: 100%;
 	height: 100vh;
 	color: white;
 	overflow: hidden;
-    /* filter: contrast(1.2); */
+	/* filter: contrast(1.2); */
 }
 
-::-moz-selection { /* Code for Firefox */
-    color: rgb(255, 255, 255);
-    background: rgb(255, 255, 255);
+::-moz-selection {
+	/* Code for Firefox */
+	color: rgb(255, 255, 255);
+	background: rgb(255, 255, 255);
 
-  }
-  
-  ::selection {
-    color: rgb(0, 0, 0);
-    background: rgb(255, 255, 255);
-  }
+}
+
+::selection {
+	color: rgb(0, 0, 0);
+	background: rgb(255, 255, 255);
+}
 
 .btn {
 	display: flex;
@@ -70,24 +71,26 @@ body {
 }
 
 .background-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    transition: background-position 0.2s ease-out;
-    will-change: transform; /* Indica ao navegador que a propriedade será animada */
-    transform: translateZ(0); /* Força a aceleração de hardware */
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	transition: background-position 0.2s ease-out;
+	will-change: transform;
+	/* Indica ao navegador que a propriedade será animada */
+	transform: translateZ(0);
+	/* Força a aceleração de hardware */
 	opacity: 0.5;
 	pointer-events: none;
 }
 
 #background-layer-1 {
-    background-image: url(/img/4chan1.png);
-    background-size: cover;
-    will-change: transform;
-    transform: translateZ(0);
+	background-image: url(/img/4chan1.png);
+	background-size: cover;
+	will-change: transform;
+	transform: translateZ(0);
 	pointer-events: none;
 	/* filter: contrast(1.4); */
 	opacity: 1;
@@ -96,49 +99,90 @@ body {
 /* Animação básica para elementos surgindo */
 @keyframes fadeInUp {
 	from {
-	  opacity: 0;
-	  transform: translateY(20px);
+		opacity: 0;
+		transform: translateY(20px);
 	}
-	to {
-	  opacity: 1;
-	  transform: translateY(0);
-	}
-  }
-  
 
-  .animate-fade-in {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+.animate-fade-in {
 	opacity: 0;
-  }
-  
+}
+
 /* Classes de delay para aplicar individualmente */
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
-.delay-5 { animation-delay: 0.5s; }
-.delay-6 { animation-delay: 0.6s; }
-.delay-7 { animation-delay: 0.7s; }
-.delay-8 { animation-delay: 0.8s; }
-.delay-9 { animation-delay: 0.9s; }
-.delay-10 { animation-delay: 1s; }
+.delay-1 {
+	animation-delay: 0.1s;
+}
+
+.delay-2 {
+	animation-delay: 0.2s;
+}
+
+.delay-3 {
+	animation-delay: 0.3s;
+}
+
+.delay-4 {
+	animation-delay: 0.4s;
+}
+
+.delay-5 {
+	animation-delay: 0.5s;
+}
+
+.delay-6 {
+	animation-delay: 0.6s;
+}
+
+.delay-7 {
+	animation-delay: 0.7s;
+}
+
+.delay-8 {
+	animation-delay: 0.8s;
+}
+
+.delay-9 {
+	animation-delay: 0.9s;
+}
+
+.delay-10 {
+	animation-delay: 1s;
+}
 
 /* Para delays maiores */
-.delay-15 { animation-delay: 1.5s; }
-.delay-20 { animation-delay: 2s; }
-.delay-25 { animation-delay: 2.5s; }
-.delay-30 { animation-delay: 3s; }
+.delay-15 {
+	animation-delay: 1.5s;
+}
+
+.delay-20 {
+	animation-delay: 2s;
+}
+
+.delay-25 {
+	animation-delay: 2.5s;
+}
+
+.delay-30 {
+	animation-delay: 3s;
+}
 
 .elemento-para-animar {
-    opacity: 0;
-    /* transform: translateY(20px); */
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    will-change: opacity, transform;
+	opacity: 0;
+	/* transform: translateY(20px); */
+	transition: opacity 0.5s ease, transform 0.5s ease;
+	will-change: opacity, transform;
 }
-  
-  .elemento-para-animar.animar {
+
+.elemento-para-animar.animar {
 	opacity: 1;
 	transform: translateY(20px);
-  }
+}
 
 /* Estilos para a lockscreen */
 .lockscreen {
@@ -155,17 +199,17 @@ body {
 	transition: opacity 0.8s ease, visibility 0s linear 0.8s;
 	backdrop-filter: blur(10px);
 	/* cursor: pointer; */
-  }
-  
-  .lock-content {
+}
+
+.lock-content {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-  }
-  
-  .lock-avatar {
+}
+
+.lock-avatar {
 	width: 120px;
 	height: 120px;
 	border-radius: 50%;
@@ -173,9 +217,9 @@ body {
 	margin-bottom: 20px;
 	box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 	animation: pulse 2s infinite ease-in-out;
-  }
-  
-  .click-text {
+}
+
+.click-text {
 	color: white;
 	font-size: 18px;
 	font-weight: 500;
@@ -184,44 +228,48 @@ body {
 	text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 	animation: fadeInOut 1.5s infinite alternate;
 	margin-top: 15px;
-  }
-  
-  /* Animação para a lockscreen quando desbloqueada */
-  .lockscreen.unlock {
+}
+
+/* Animação para a lockscreen quando desbloqueada */
+.lockscreen.unlock {
 	opacity: 0;
 	visibility: hidden;
-  }
-  
-  /* Animações */
-  @keyframes pulse {
-	0% {
-	  transform: scale(1);
-	  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
-	}
-	70% {
-	  transform: scale(1.05);
-	  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-	}
-	100% {
-	  transform: scale(1);
-	  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-	}
-  }
-  
-  @keyframes fadeInOut {
-	0% {
-	  opacity: 0.4;
-	}
-	100% {
-	  opacity: 1;
-	}
-  }
+}
 
-  @keyframes fadeIn {
+/* Animações */
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+	}
+
+	70% {
+		transform: scale(1.05);
+		box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+	}
+
+	100% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
+}
+
+@keyframes fadeInOut {
+	0% {
+		opacity: 0.4;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
 	from {
 		/* opacity: 0; */
 		transform: translateY(20px);
 	}
+
 	to {
 		/* opacity: 1; */
 		transform: translateY(0);
@@ -232,6 +280,7 @@ body {
 	from {
 		transform: translateY(0);
 	}
+
 	to {
 		transform: translateY(-60px);
 	}
@@ -240,58 +289,60 @@ body {
 /* Dispositivos extra pequenos (celulares, até 480px) */
 @media only screen and (max-width: 480px) {
 	.container {
-	  margin-top: 60px;
-	  padding: 25px 10px;
+		margin-top: 60px;
+		padding: 25px 10px;
 	}
-	
+
 	.container .profileLayout .profileUsername {
-	  font-size: 30px;
-	  margin-top: -15px;
+		font-size: 30px;
+		margin-top: -15px;
 	}
-  }
-  
-  /* Dispositivos pequenos (tablets, 481px até 768px) */
+}
+
+/* Dispositivos pequenos (tablets, 481px até 768px) */
 @media only screen and (min-width: 481px) and (max-width: 768px) {
 	.container {
-	  margin-top: 70px;
+		margin-top: 70px;
 	}
-	
+
 	.music-container {
-	  padding-top: 100px;
+		padding-top: 100px;
 	}
-  }
-  
-  /* Telas grandes (desktops, 1201px até 1920px) */
+}
+
+/* Telas grandes (desktops, 1201px até 1920px) */
 @media only screen and (min-width: 1201px) {
-	.container, .music-container {
-	  max-width: 800px;
+
+	.container,
+	.music-container {
+		max-width: 800px;
 	}
-  }
-  
-  /* Telas ultrawide (acima de 1921px) */
-  @media only screen and (min-width: 1921px) {
+}
+
+/* Telas ultrawide (acima de 1921px) */
+@media only screen and (min-width: 1921px) {
 	body {
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
-	
-	.container, .music-container {
-	  max-width: 900px;
+
+	.container,
+	.music-container {
+		max-width: 900px;
 	}
-	
+
 	/* Evitar que o conteúdo fique muito esticado */
 	.background-layer {
-	  background-size: cover;
-	  background-position: center;
+		background-size: cover;
+		background-position: center;
 	}
-  }
-  
-  /* Para monitores extremamente largos (proporção ultrawide) */
-  @media only screen and (min-aspect-ratio: 21/9) {
+}
+
+/* Para monitores extremamente largos (proporção ultrawide) */
+@media only screen and (min-aspect-ratio: 21/9) {
 	body {
-	  max-width: 1800px;
-	  margin: 0 auto;
+		max-width: 1800px;
+		margin: 0 auto;
 	}
-  }
-  
+}

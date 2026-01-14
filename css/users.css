@@ -31,10 +31,11 @@ body {
     max-width: 650px;
     text-align: center;
     border: 2px solid rgba(175, 175, 175, 0.048);
-    margin: -10px; /* WITH MUSIC CONTAINER UP ANIMATION */
+    margin: -10px;
+    /* WITH MUSIC CONTAINER UP ANIMATION */
     margin-top: 80px;
-    transition: 
-        transform 0.5s cubic-bezier(0.03, 0.98, 0.52, 0.99), 
+    transition:
+        transform 0.5s cubic-bezier(0.03, 0.98, 0.52, 0.99),
         height 0.5s cubic-bezier(0.03, 0.98, 0.52, 0.99);
     overflow: visible;
     transform-style: preserve-3d;
@@ -54,9 +55,12 @@ body {
 /* Ajustes para telas menores (tablets) */
 @media (max-width: 768px) {
     .container {
-        padding: 25px 10px; /* Reduz o padding */
-        min-height: 12rem; /* Reduz a altura mínima */
-        max-width: 90%; /* Aumenta a largura máxima para ocupar mais espaço */
+        padding: 25px 10px;
+        /* Reduz o padding */
+        min-height: 12rem;
+        /* Reduz a altura mínima */
+        max-width: 90%;
+        /* Aumenta a largura máxima para ocupar mais espaço */
         height: auto;
     }
 }
@@ -64,10 +68,14 @@ body {
 /* Ajustes para telas muito pequenas (smartphones) */
 @media (max-width: 480px) {
     .container {
-        padding: 20px 8px; /* Reduz ainda mais o padding */
-        min-height: 10rem; /* Reduz a altura mínima */
-        max-width: 95%; /* Aumenta a largura máxima para ocupar mais espaço */
-        border-radius: 10px; /* Reduz o border-radius para telas pequenas */
+        padding: 20px 8px;
+        /* Reduz ainda mais o padding */
+        min-height: 10rem;
+        /* Reduz a altura mínima */
+        max-width: 95%;
+        /* Aumenta a largura máxima para ocupar mais espaço */
+        border-radius: 10px;
+        /* Reduz o border-radius para telas pequenas */
         /* padding-bottom: 100px; */
         margin-bottom: 80px;
         border: 4px solid rgba(175, 175, 175, 0.034);
@@ -100,7 +108,7 @@ body {
 /* Responsividade para tablets */
 @media (max-width: 480px) {
     .container .avatar {
-		margin-top: 20px;
+        margin-top: 20px;
     }
 }
 
@@ -131,7 +139,7 @@ body {
     animation: glow 1s ease-in-out infinite alternate;
 }
 
-.container .profileLayout .profileUsername span{
+.container .profileLayout .profileUsername span {
     font-weight: 600;
     font-size: 40px;
     width: fit-content;
@@ -195,13 +203,14 @@ body {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     white-space: nowrap;
     pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação tipo bounce */
-  }
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Animação tipo bounce */
+}
 
 /* Podemos remover o pseudo-elemento ::before que era usado antes */
 .container .profileLayout .profileBadges .profileBadge::before {
     display: none;
-  }
+}
 
 /* .container .profileLayout .profileBadges .profileBadge:hover::before {
     opacity: .8;
@@ -496,7 +505,8 @@ body {
     margin-top: 2rem;
     filter: drop-shadow(0 0 0.9px #ffffff) !important;
     cursor: url('/img/extralsmall.png') !important;
-    transition: all 0.3s ease; /* Adiciona uma transição suave */
+    transition: all 0.3s ease;
+    /* Adiciona uma transição suave */
     font-size: 1.09em;
 }
 
@@ -601,7 +611,8 @@ body {
     transform: translateX(-50%);
     border-radius: 1rem;
     padding: 2px 16px;
-    z-index: 10; /* Aumentado para garantir que fique acima de outros elementos */
+    z-index: 10;
+    /* Aumentado para garantir que fique acima de outros elementos */
     filter: none;
     box-shadow: none;
     white-space: nowrap;
@@ -619,14 +630,19 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    bottom: -31px; /* Posição consistente na parte inferior */
-    right: 240px; /* Alinhado à direita em vez de usar valor fixo */
+    bottom: -31px;
+    /* Posição consistente na parte inferior */
+    right: 240px;
+    /* Alinhado à direita em vez de usar valor fixo */
     gap: 0.5rem;
     padding: 6px 12px;
     border-radius: 8px;
-    color: rgba(255, 255, 255, 0.178); /* Texto mais visível */
-    transition: all 0.3s ease; /* Transição suave para mudanças de estado */
-    z-index: 5; /* Garantir que esteja acima de outros elementos */
+    color: rgba(255, 255, 255, 0.178);
+    /* Texto mais visível */
+    transition: all 0.3s ease;
+    /* Transição suave para mudanças de estado */
+    z-index: 5;
+    /* Garantir que esteja acima de outros elementos */
     filter: blur(10px);
 }
 
@@ -635,10 +651,12 @@ body {
 }
 
 /* Profile views e location estilizados para serem mais robustos */
-.profileViews, .profileLocation {
+.profileViews,
+.profileLocation {
     display: flex;
     align-items: center;
-    gap: 0.4rem; /* Espaçamento ligeiramente aumentado */
+    gap: 0.4rem;
+    /* Espaçamento ligeiramente aumentado */
     position: relative;
     padding: 2px 4px;
 }
@@ -646,8 +664,10 @@ body {
 /* Responsividade para tablets */
 @media screen and (min-width: 2560px) {
     .profileStats {
-        bottom: -50px; /* Posição consistente na parte inferior */
-        right: 365px; /* Alinhado à direita em vez de usar valor fixo */
+        bottom: -50px;
+        /* Posição consistente na parte inferior */
+        right: 365px;
+        /* Alinhado à direita em vez de usar valor fixo */
         padding: 5px 10px;
     }
 }
@@ -655,16 +675,20 @@ body {
 /* Responsividade para tablets */
 @media (max-width: 992px) {
     .profileStats {
-        bottom: -31px; /* Posição consistente na parte inferior */
-        right: 230px; /* Alinhado à direita em vez de usar valor fixo */
+        bottom: -31px;
+        /* Posição consistente na parte inferior */
+        right: 230px;
+        /* Alinhado à direita em vez de usar valor fixo */
         padding: 5px 10px;
     }
 }
 
 @media (max-width: 900px) {
     .profileStats {
-        bottom: -31px; /* Posição consistente na parte inferior */
-        right: 230px; /* Alinhado à direita em vez de usar valor fixo */
+        bottom: -31px;
+        /* Posição consistente na parte inferior */
+        right: 230px;
+        /* Alinhado à direita em vez de usar valor fixo */
         padding: 5px 10px;
     }
 }
@@ -672,22 +696,28 @@ body {
 /* Responsividade para tablets menores */
 @media (max-width: 768px) {
     .profileStats {
-        bottom: -25px; /* Posição consistente na parte inferior */
-        right: 230px; /*Alinhado à direita em vez de usar valor fixo*/
+        bottom: -25px;
+        /* Posição consistente na parte inferior */
+        right: 230px;
+        /*Alinhado à direita em vez de usar valor fixo*/
     }
 }
 
 @media (max-width: 760px) {
     .profileStats {
-        bottom: -25px; /* Posição consistente na parte inferior */
-        right: 215px; /* Alinhado à direita em vez de usar valor fixo */
+        bottom: -25px;
+        /* Posição consistente na parte inferior */
+        right: 215px;
+        /* Alinhado à direita em vez de usar valor fixo */
     }
 }
 
 @media (max-width: 750px) {
     .profileStats {
-        bottom: -25px; /* Posição consistente na parte inferior */
-        right: 205px; /* Alinhado à direita em vez de usar valor fixo */
+        bottom: -25px;
+        /* Posição consistente na parte inferior */
+        right: 205px;
+        /* Alinhado à direita em vez de usar valor fixo */
     }
 }
 
@@ -695,8 +725,10 @@ body {
 /* Ajuste para telas médias */
 @media (max-width: 600px) {
     .profileStats {
-        bottom: -20px; /* Posição consistente na parte inferior */
-        right: 160px; /* Alinhado à direita em vez de usar valor fixo */
+        bottom: -20px;
+        /* Posição consistente na parte inferior */
+        right: 160px;
+        /* Alinhado à direita em vez de usar valor fixo */
         font-size: 13px;
     }
 }
@@ -704,8 +736,10 @@ body {
 /* Ajuste para telas médias */
 @media (max-width: 531px) {
     .profileStats {
-        bottom: -20px; /* Posição consistente na parte inferior */
-        right: 140px; /* Alinhado à direita em vez de usar valor fixo */
+        bottom: -20px;
+        /* Posição consistente na parte inferior */
+        right: 140px;
+        /* Alinhado à direita em vez de usar valor fixo */
         font-size: 13px;
     }
 }
@@ -713,16 +747,21 @@ body {
 /* Ajustes para celulares */
 @media (max-width: 480px) {
     .profileStats {
-        flex-direction: row; /* Mantém na horizontal para economizar espaço */
-        bottom: -20px; /* Posição consistente na parte inferior */
-        right: 135px; /* Alinhado à direita em vez de usar valor fixo */
+        flex-direction: row;
+        /* Mantém na horizontal para economizar espaço */
+        bottom: -20px;
+        /* Posição consistente na parte inferior */
+        right: 135px;
+        /* Alinhado à direita em vez de usar valor fixo */
         padding: 4px 8px;
         /* gap: 0.3rem; */
         font-size: 12px;
     }
-    
-    .profileViews svg, .profileLocation svg {
-        width: 14px; /* Ícones um pouco menores */
+
+    .profileViews svg,
+    .profileLocation svg {
+        width: 14px;
+        /* Ícones um pouco menores */
         height: 14px;
     }
 }
@@ -730,21 +769,24 @@ body {
 /* Telas muito pequenas - ajuste completo */
 @media (max-width: 350px) {
     .profileStats {
-        position: relative; /* Remove posicionamento absoluto */
+        position: relative;
+        /* Remove posicionamento absoluto */
         bottom: auto;
         right: auto;
-        margin: 10px auto 5px auto; /* Centralizado com margem superior */
+        margin: 10px auto 5px auto;
+        /* Centralizado com margem superior */
         width: fit-content;
         flex-direction: row;
         justify-content: center;
     }
-    
+
     /* Esconde o separador em telas muito pequenas */
     .profileStats .separator {
         display: none;
     }
-    
-    .profileViews, .profileLocation {
+
+    .profileViews,
+    .profileLocation {
         margin: 0 5px;
     }
 }
@@ -788,18 +830,26 @@ body {
 }
 
 /* Estilo para os ícones SVG dentro dos elementos */
-.profileViews svg, .profileLocation svg {
-    flex-shrink: 0; /* Impede que os ícones encolham */
+.profileViews svg,
+.profileLocation svg {
+    flex-shrink: 0;
+    /* Impede que os ícones encolham */
 }
 
 /* Destaque no hover para elementos clicáveis */
-.profileViews:hover, .profileLocation:hover {
+.profileViews:hover,
+.profileLocation:hover {
     color: rgba(255, 255, 255, 1);
 }
 
 @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
 }
 
 .music-container {
@@ -810,47 +860,66 @@ body {
     flex-direction: column;
     backdrop-filter: blur(10px);
     border-radius: 15px;
-    min-height: 5rem; /* Altura inicial */
+    min-height: 5rem;
+    /* Altura inicial */
     padding: 35px 15px;
     width: 100%;
     max-width: 650px;
-    max-height: 100px;
+    max-height: 150px;
     text-align: center;
     border: 2px solid rgba(175, 175, 175, 0.048);
-    margin: 0 auto; /* Centraliza o container na tela */
+    margin: 0 auto;
+    /* Centraliza o container na tela */
     will-change: transform, height;
     transition: height 0.5s ease, min-height 0.5s ease;
     overflow: hidden;
 }
 
+.music-player .song-title {
+    margin-bottom: 12px;
+    /* increases space between title and progress bar */
+    /* or, for finer control: */
+    position: relative;
+    top: -10px;
+    /* moves it slightly higher */
+}
+
+
+
 /* Ajustes para monitores ultrawide (1920px e acima) */
 @media screen and (min-width: 1920px) {
     .music-container {
-        max-width: 900px; /* Aumenta a largura máxima para ultrawide */
+        max-width: 900px;
+        /* Aumenta a largura máxima para ultrawide */
     }
 }
 
 /* Ajustes específicos para monitores 2560px ou maiores */
 @media screen and (min-width: 2560px) {
     .music-container {
-        max-width: 1100px; /* Largura ainda maior para monitores realmente grandes */
+        max-width: 1100px;
+        /* Largura ainda maior para monitores realmente grandes */
     }
 }
 
 /* Ajustes para telas menores (tablets) */
 @media (max-width: 768px) {
     .music-container {
-        min-height: 10rem; /* Reduz a altura mínima */
-        max-width: 90%; /* Aumenta a largura máxima para ocupar mais espaço */
+        min-height: 10rem;
+        /* Reduz a altura mínima */
+        max-width: 90%;
+        /* Aumenta a largura máxima para ocupar mais espaço */
     }
 }
 
 /* Ajustes para telas menores (tablets) */
 @media (max-width: 550px) {
     .music-container {
-        min-height: 12rem; /* Reduz a altura mínima */
+        min-height: 12rem;
+        /* Reduz a altura mínima */
         height: 50px;
-        max-width: 75%; /* Aumenta a largura máxima para ocupar mais espaço */
+        max-width: 75%;
+        /* Aumenta a largura máxima para ocupar mais espaço */
     }
 }
 
@@ -858,9 +927,12 @@ body {
 @media (max-width: 480px) {
     .music-container {
         border: 4px solid rgba(175, 175, 175, 0.034);
-        min-height: 10rem; /* Reduz a altura mínima */
-        max-width: 80%; /* Aumenta a largura máxima para ocupar mais espaço */
-        border-radius: 10px; /* Reduz o border-radius para telas pequenas */
+        min-height: 10rem;
+        /* Reduz a altura mínima */
+        max-width: 80%;
+        /* Aumenta a largura máxima para ocupar mais espaço */
+        border-radius: 10px;
+        /* Reduz o border-radius para telas pequenas */
         bottom: 75px;
     }
 }
@@ -868,8 +940,10 @@ body {
 /* Ajustes para telas muito pequenas (smartphones) */
 @media (max-width: 413px) {
     .music-container {
-        max-width: 70%; /* Aumenta a largura máxima para ocupar mais espaço */
-        border-radius: 10px; /* Reduz o border-radius para telas pequenas */
+        max-width: 70%;
+        /* Aumenta a largura máxima para ocupar mais espaço */
+        border-radius: 10px;
+        /* Reduz o border-radius para telas pequenas */
         bottom: 60px;
     }
 }
@@ -884,15 +958,18 @@ body {
 /* Ajustes para telas menores (tablets) */
 @media screen and (min-width: 2560px) {
     .music-player {
-        max-width: 90%; /* Aumenta a largura máxima para ocupar mais espaço */
+        max-width: 90%;
+        /* Aumenta a largura máxima para ocupar mais espaço */
     }
 }
 
 /* Ajustes para telas menores (tablets) */
 @media (max-width: 768px) {
     .music-player {
-        min-height: 12rem; /* Reduz a altura mínima */
-        max-width: 90%; /* Aumenta a largura máxima para ocupar mais espaço */
+        min-height: 12rem;
+        /* Reduz a altura mínima */
+        max-width: 90%;
+        /* Aumenta a largura máxima para ocupar mais espaço */
         padding-top: 40px;
     }
 }
@@ -901,9 +978,12 @@ body {
 @media (max-width: 480px) {
     .music-player {
         padding-top: 30px;
-        min-height: 10rem; /* Reduz a altura mínima */
-        max-width: 80%; /* Aumenta a largura máxima para ocupar mais espaço */
-        border-radius: 10px; /* Reduz o border-radius para telas pequenas */
+        min-height: 10rem;
+        /* Reduz a altura mínima */
+        max-width: 80%;
+        /* Aumenta a largura máxima para ocupar mais espaço */
+        border-radius: 10px;
+        /* Reduz o border-radius para telas pequenas */
         bottom: 60px;
     }
 }
@@ -982,7 +1062,7 @@ body {
 }
 
 .pause-icon {
-  font-size: 40px;
+    font-size: 40px;
 }
 
 .volume-control {
@@ -1003,7 +1083,7 @@ body {
 .volume-slider {
     width: 120px;
     height: 4px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     outline: none;
     opacity: 0;
     /* Mudança aqui - transição mais lenta para esconder (desaparecer) */
@@ -1046,4 +1126,3 @@ body {
         display: none;
     }
 }
-
