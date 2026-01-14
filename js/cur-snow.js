@@ -106,10 +106,10 @@ function sparkle_init() {
 
         // Create path element for the star
         const path = document.createElementNS(svgNS, "path");
-        
+
         // Use the star shape from the SVG
         path.setAttribute("d", "M502.842,225.679c14.769-14.769,6.892-40.369-13.785-43.323l-119.138-17.723 c-7.877-0.985-15.754-6.892-18.708-13.785L298.042,42.54c-8.862-18.708-36.431-18.708-45.292,0L199.58,150.848 c-3.938,7.877-10.831,12.8-18.708,13.785L60.749,182.356c-20.677,2.954-29.538,28.554-13.785,43.323l85.662,83.692 c5.908,5.908,8.862,13.785,6.892,22.646l-20.677,118.154c-1.969,14.769,6.892,26.585,19.692,29.538 c0.985-2.954,2.954-5.908,6.892-6.892c41.354-9.846,73.846-35.446,107.323-61.046c6.892-5.908,13.785,0.985,14.769,7.877 c5.908-1.969,12.8-0.985,18.708,1.969l106.338,56.123c18.708,9.846,40.369-5.908,36.431-26.585l-20.677-118.154 c-0.985-7.877,0.985-16.738,6.892-22.646L502.842,225.679z");
-        
+
         // Append path to SVG and SVG to div
         svg.appendChild(path);
         star_div.appendChild(svg);
@@ -180,9 +180,9 @@ function sparkle_init() {
             }
         }
     };
-    
+
     // Also create stars randomly across the screen for background effect
-    setInterval(function() {
+    setInterval(function () {
         if (sparkles_enabled) {
             const x = Math.random() * doc_width;
             const y = Math.random() * doc_height;
@@ -257,30 +257,30 @@ function create_star(x, y, probability = 1.0) {
         star[min_index].style.left = x + "px";
         star_y[min_index] = y;
         star[min_index].style.top = y + "px";
-        
+
         // Random size for variety
         const scale = 0.5 + Math.random() * 0.5;
         star[min_index].firstChild.style.transform = `scale(${scale})`;
-        
+
         // Apply color to the SVG path
         const color = get_random_color();
         const path = star[min_index].querySelector('path');
         path.setAttribute("fill", color);
-        
+
         // Add glow effect
         if (glow_enabled) {
             star[min_index].style.filter = `drop-shadow(0 0 3px ${color})`;
         }
-        
+
         // Add twinkle animation with random duration
         star[min_index].style.animation = `twinkle ${1 + Math.random()}s infinite alternate`;
-        
+
         star[min_index].style.opacity = star_opacity;
         star[min_index].style.visibility = "visible";
-        
+
         // Random rotation
         star[min_index].style.transform = `rotate(${Math.random() * 360}deg)`;
-        
+
         return min_index;
     }
 }
@@ -350,25 +350,25 @@ function star_to_tiny(i) {
     const starColor = starPath ? starPath.getAttribute('fill') : '#FFFFFF';
 
     // star is in-bounds, create dot
-    if (star_y[i] + star_size/2 < doc_height && star_x[i] + star_size/2 < doc_width) {
+    if (star_y[i] + star_size / 2 < doc_height && star_x[i] + star_size / 2 < doc_width) {
         tiny_remaining_ticks[i] = sparkle_lifetime * 2;
-        tiny_y[i] = star_y[i] + star_size/2;
+        tiny_y[i] = star_y[i] + star_size / 2;
         tiny[i].style.top = tiny_y[i] + "px";
-        tiny_x[i] = star_x[i] + star_size/2;
+        tiny_x[i] = star_x[i] + star_size / 2;
         tiny[i].style.left = tiny_x[i] + "px";
         tiny[i].style.width = "2px";
         tiny[i].style.height = "2px";
-        
+
         // Use color from the star
         tiny[i].style.backgroundColor = starColor;
-        
+
         // Add glow to dots too
         if (glow_enabled) {
             tiny[i].style.boxShadow = `0 0 3px ${starColor}`;
         }
-        
+
         tiny[i].style.opacity = star_opacity * 0.8;
-        
+
         star[i].style.visibility = "hidden";
         tiny[i].style.visibility = "visible";
     }

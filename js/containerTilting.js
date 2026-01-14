@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let targetX = 0;
     let targetY = 0;
     let rafId = null;
-    
+
     // Variáveis para controlar o estado da animação
     let containerYOffset = 0;
     let targetYOffset = 0;
@@ -61,18 +61,18 @@ document.addEventListener('DOMContentLoaded', () => {
         currentX += (targetX - currentX) * 0.1;
         currentY += (targetY - currentY) * 0.1;
         currentYOffset += (targetYOffset - currentYOffset) * 0.05; // Suavizar movimento vertical
-        
+
         // Aplicar transformação com base no estado atual
         if (container) {
             // Combinar a animação de deslocamento vertical com a de rotação 3D
             container.style.transform = `perspective(1000px) translateY(${currentYOffset}px) rotateX(${currentY}deg) rotateY(${currentX}deg)`;
         }
-        
+
         // Para o music container, aplicar apenas a rotação 3D
         if (musicContainer && musicContainer.style.opacity === '1') {
             musicContainer.style.transform = `perspective(1000px) rotateX(${currentY}deg) rotateY(${currentX}deg)`;
         }
-        
+
         // Continuar a animação sempre
         rafId = requestAnimationFrame(animateTransform);
     }
@@ -92,11 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const offsetX = (x - centerX) / centerX;
                 const offsetY = (y - centerY) / centerY;
                 const intensity = 9;
-                
+
                 // Atualizar os valores alvo
                 targetX = offsetX * intensity;
                 targetY = offsetY * intensity;
-                
+
                 // Prevenindo propagação do evento
                 e.stopPropagation();
             });
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fade in do container principal
         if (container) {
             container.style.animation = 'fadeIn 0.8s forwards';
-            
+
             // Quando a animação fadeIn terminar
             container.addEventListener('animationend', (e) => {
                 if (e.animationName === 'fadeIn') {
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fade in do music container
             if (musicContainer) {
                 musicContainer.style.animation = 'fadeIn 0.8s forwards';
-                
+
                 // Quando a animação fadeIn terminar
                 musicContainer.addEventListener('animationend', (e) => {
                     if (e.animationName === 'fadeIn') {
@@ -160,12 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }, { once: true });
             }
-            
+
             // Move up do container principal - agora usando nossa variável targetYOffset
             if (container) {
                 // Definir o deslocamento alvo para -60px
                 targetYOffset = -60;
-                
+
                 // Não precisamos mais da animação CSS para moveUp,
                 // pois agora controlamos o movimento através da animação JS
             }

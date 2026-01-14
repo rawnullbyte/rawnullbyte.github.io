@@ -104,6 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Auto-play next track when current track ends
+    audio.addEventListener('ended', () => {
+        currentIndex = (currentIndex + 1) % playlist.length;
+        loadTrack(currentIndex);
+        audio.play();
+    });
+
     function formatTime(time) {
         const m = Math.floor(time / 60);
         const s = Math.floor(time % 60);
