@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Playlist
     const playlist = [
         'songs/losing contact 道 - I want to stop having nightmares when I go to bed..mp3',
+        'songs/lolipushing - choker.mp3',
         'songs/Ashen Blood - a distant memory (ft. sovietico).mp3',
         'songs/Ashen Blood - as i watch everything fall.mp3',
         'songs/Ashen Blood - losing myself.mp3',
@@ -25,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         "songs/i don't really feel like eating anymore - for you.mp3",
         'songs/i want to throw up - i want to throw up.mp3',
         'songs/Loli in early 20s - Da Da Is Tape To And U U U.mp3',
-        'songs/lolipushing - choker.mp3',
         'songs/cyygnil - 081125.mp3',
         'songs/redeath - i need you.mp3'
     ];
