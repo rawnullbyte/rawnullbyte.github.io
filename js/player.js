@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Playlist
     const playlist = [
-        "songs/losing contact 道 - I want to stop having nightmares when I go to bed..mp3",
         "songs/stillveil - I'm tired of my life.mp3",
+        "songs/losing contact 道 - I want to stop having nightmares when I go to bed..mp3",
         "songs/stillveil, Mempty - Please forget me.mp3",
         "songs/lolipushing - choker.mp3",
         "songs/Ashen Blood - a distant memory (ft. sovietico).mp3",
