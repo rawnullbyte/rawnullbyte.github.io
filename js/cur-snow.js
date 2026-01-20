@@ -76,6 +76,7 @@ function sparkle_init() {
         tiny_div.style.visibility = "hidden";
         tiny_div.style.zIndex = "999";
         tiny_div.style.borderRadius = "50%"; // make dots round
+        tiny_div.style.pointerEvents = "none";
 
         // if there's an existing dot, remove it
         if (tiny[i]) {
@@ -95,6 +96,7 @@ function sparkle_init() {
         star_div.style.overflow = "visible";
         star_div.style.visibility = "hidden";
         star_div.style.zIndex = "999";
+        star_div.style.pointerEvents = "none";
 
         // Create SVG element
         const svgNS = "http://www.w3.org/2000/svg";

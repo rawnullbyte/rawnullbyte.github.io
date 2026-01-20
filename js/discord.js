@@ -72,7 +72,7 @@ function updateDiscordProfile() {
                     bioElement.textContent = userData.kv.bio;
                 } else {
                     // Fallback to default bio if no KV bio found
-                    bioElement.textContent = '𝘐 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘣𝘦 𝘥𝘦𝘢𝘉';
+                    bioElement.textContent = '𝘐 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘣𝘦 𝘥𝘦𝘢𝘥';
                 }
             }
         })
@@ -93,7 +93,7 @@ function updateDiscordProfile() {
 
             const usernameElement = document.querySelector('.discordUsername');
             if (usernameElement) {
-                usernameElement.textContent = 'rawnullbyte';
+                usernameElement.textContent = '. . .';
             }
 
         });
