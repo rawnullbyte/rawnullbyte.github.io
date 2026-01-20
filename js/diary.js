@@ -8,8 +8,8 @@ async function loadDiary() {
     }
 
     try {
-        const response = await fetch('diary.md');
-        if (!response.ok) throw new Error('diary.md not found');
+        const response = await fetch('diary.txt');
+        if (!response.ok) throw new Error('diary.txt not found');
 
         const text = await response.text();
         const chunks = text.split(/^---$/m).map(chunk => chunk.trim()).filter(Boolean);
