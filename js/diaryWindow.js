@@ -3,11 +3,20 @@ function toggleDiary() {
     if (!diary) return;
 
     if (getComputedStyle(diary).display === 'none') {
+        // Show the element block so it can be animated
         diary.style.display = 'flex';
-        setTimeout(() => diary.classList.add('active'), 10);
+
+        // Small delay to allow display:flex to register before adding animation class
+        setTimeout(() => {
+            diary.classList.add('active');
+        }, 10);
     } else {
+        // Fade out
         diary.classList.remove('active');
-        setTimeout(() => diary.style.display = 'none', 150);
+
+        setTimeout(() => {
+            diary.style.display = 'none';
+        }, 300); // Matches the 0.3s in CSS
     }
 }
 

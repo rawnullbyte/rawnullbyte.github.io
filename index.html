@@ -124,6 +124,16 @@
         style="position: fixed; width: 100%; align-items: center; max-width: var(--containerWidth); display: flex; justify-content: center; flex-direction: column; gap: 15px; will-change: transform; transition: 700ms cubic-bezier(0.03, 0.98, 0.52, 0.99); transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
         <div class="container"
             style="will-change: transform; transition: 0ms cubic-bezier(0.03, 0.98, 0.52, 0.99); transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
+            <div class="element-to-animate delay-5 diary-anchor">
+                <a data-type="Diary" class="linkedAccountsRedirect" target="_blank" onclick="toggleDiary()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 432 512">
+                        <path fill="currentColor"
+                            d="M67 512h362v-43H67q-22 0-22-21t22-21h362V0H67Q39 0 21 18.5T3 64v363h4q-4 12-4 21q0 27 18 45.5T67 512zM45 64q0-21 22-21h320v341H67q-8 0-22 4V64zm86 107h192v42H131v-42zm0-86h192v43H131V85z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+
             <div class="element-to-animate delay-7">
                 <img style="opacity: 1;" class="avatar" src="/img/pfp.png">
             </div>
@@ -230,14 +240,6 @@
                             </path>
                         </svg>
                     </a>
-
-                    <a data-type="Diary" class="linkedAccountsRedirect" target="_blank" onclick="toggleDiary()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 432 512">
-                            <path fill="currentColor"
-                                d="M67 512h362v-43H67q-22 0-22-21t22-21h362V0H67Q39 0 21 18.5T3 64v363h4q-4 12-4 21q0 27 18 45.5T67 512zM45 64q0-21 22-21h320v341H67q-8 0-22 4V64zm86 107h192v42H131v-42zm0-86h192v43H131V85z">
-                            </path>
-                        </svg>
-                    </a>
                 </div>
             </div>
             <div class="element-to-animate delay-20">
@@ -302,7 +304,7 @@
     <div class="diary-container" id="diaryWindow">
         <div class="diary-header" id="diaryHeader">
             <span>Diary</span>
-            <div class="close-diary" onclick="document.getElementById('diaryWindow').style.display='none'">
+            <div class="close-diary" onclick="toggleDiary()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
