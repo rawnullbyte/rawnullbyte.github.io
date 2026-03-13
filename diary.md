@@ -21,3 +21,9 @@ date: March 13, 2026, 14:22
 title: 
 ---
 I miss siinamota... rip 😔
+
+---
+date: March 13, 2026, 22:20
+title: HiAnime
+---
+rip HiAnime, lost my entire fucking watchlist.
