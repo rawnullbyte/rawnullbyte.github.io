@@ -27,3 +27,9 @@ date: March 13, 2026, 22:20
 title: HiAnime
 ---
 rip HiAnime, lost my entire fucking watchlist.
+
+---
+date: March 19, 2026, 21:39
+title:
+---
+Buy beer, get drunk, throw up, have some time with a girl, take sleeping pills with her, rot in the bed for 3 days hugging her, rot, die.
