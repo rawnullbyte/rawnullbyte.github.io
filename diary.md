@@ -33,3 +33,9 @@ date: March 19, 2026, 21:39
 title:
 ---
 Buy beer, get drunk, throw up, have some time with a girl, take sleeping pills with her, rot in the bed for 3 days hugging her, rot, die.
+
+---
+date: March 19, 2026, 21:49
+title:
+---
+Can I just fucking die???
