@@ -39,3 +39,17 @@ date: March 19, 2026, 21:49
 title:
 ---
 Can I just fucking die???
+
+---
+date: March 21, 2026, 22:00
+title:
+---
+<center>
+  And the fresh blood ceaselessly spilt down on the floor,<br>
+  as I faintly sensed your body gradually getting cold.<br>
+  Within my narrowing vision,<br>
+  your ragged breath made certain your presence.<br>
+  At the end of the earth that was coming to a close again,<br>
+  we shared the same desolation and<br>
+  heartbeat for a fleeting moment.
+</center>
