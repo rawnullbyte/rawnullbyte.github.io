@@ -88,3 +88,12 @@ title:
   Т-ты теперь заперта дома, подруги смотрят так косо
   Не берешь свой телефон и хаваешь-хаваешь
 </center>
+
+---
+date: April 6, 2026, 11:31
+title:
+---
+
+https://github.com/user-attachments/assets/ad1d6727-bf6c-4194-a341-c4b8bc1fe1f9
+
+I miss you Zuki, I hope all the surgeries will go well and everything will get better. 😔
