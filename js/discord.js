@@ -1,5 +1,5 @@
 function updateDiscordProfile() {
-    const userId = '1454942833457758218';
+    const userId = '143034815753486336';
 
     // Use Lanyard API to get Discord status
     fetch(`https://api.lanyard.rest/v1/users/${userId}`)
