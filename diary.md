@@ -103,13 +103,13 @@ date: April 22, 2026, 23:00
 title:
 ---
 
-Just notcied how fucking fast time flies by, I thought I made the previoust post like a week ago, and its been whole ass 2+ weeks, anyways heres a cool edit i found.
-https://github.com/user-attachments/assets/8357e2d4-17bd-4f25-a192-f6b9bcc9f3e5
+Just noticed how fucking fast time flies by, I thought I made the previoust post like a week ago, and its been whole ass 2+ weeks, anyways heres a cool edit i found
 
+https://github.com/user-attachments/assets/8357e2d4-17bd-4f25-a192-f6b9bcc9f3e5
 
 ---
 date: April 22, 2026, 23:07
 title:
 ---
-holy shit what?!
+holy shit what?
 https://github.com/user-attachments/assets/bcb40e7c-cbb2-4af6-8157-4aed067e4a03
