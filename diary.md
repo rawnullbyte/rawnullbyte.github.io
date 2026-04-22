@@ -97,3 +97,11 @@ title:
 https://github.com/user-attachments/assets/ad1d6727-bf6c-4194-a341-c4b8bc1fe1f9
 
 I miss you Zuki, I hope all the surgeries will go well and everything will get better. 😔
+
+---
+date: April 22, 2026, 23:00
+title:
+---
+
+Just notcied how fucking fast time flies by, I thought I made the previoust post like a week ago, and its been whole ass 2+ weeks, anyways heres a cool edit i found!
+https://github.com/user-attachments/assets/8357e2d4-17bd-4f25-a192-f6b9bcc9f3e5
