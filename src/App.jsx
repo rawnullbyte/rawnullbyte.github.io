@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Lockscreen from './components/Lockscreen'
 import VideoBackground from './components/VideoBackground'
 import VolumeControl from './components/VolumeControl'
@@ -8,6 +8,7 @@ import DiaryWindow from './components/DiaryWindow'
 import ViewCounter from './components/ViewCounter'
 import { useRainAudio } from './hooks/useRainAudio'
 import { useCursorSparkles } from './hooks/useCursorSparkles'
+import { useContainerTilt } from './hooks/useContainerTilt'
 
 export default function App() {
   const [isUnlocked, setIsUnlocked] = useState(false)
@@ -15,22 +16,23 @@ export default function App() {
   const [showMusic, setShowMusic] = useState(false)
   const [isDiaryOpen, setDiaryOpen] = useState(false)
 
+  // Both cards share a single tilt so they move together (matches original)
+  const profileRef = useRef(null)
+  const musicRef = useRef(null)
+  useContainerTilt([profileRef, musicRef])
+
   useRainAudio(isUnlocked)
   useCursorSparkles()
 
   function handleUnlock() {
     setIsUnlocked(true)
-    // Sequence matches original: container first, then music player after 1s
     setTimeout(() => setShowContent(true), 100)
-    setTimeout(() => setShowMusic(true), 1100)
+    setTimeout(() => setShowMusic(true), 1200)
   }
 
-  // Block devtools (matching original blockDevTools.js)
   useEffect(() => {
     const block = (e) => {
-      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
-        e.preventDefault()
-      }
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) e.preventDefault()
     }
     const blockCtx = (e) => e.preventDefault()
     document.addEventListener('keydown', block)
@@ -47,13 +49,18 @@ export default function App() {
       <VideoBackground />
       <VolumeControl />
 
-      <div className="fixed inset-0 flex flex-col items-center justify-center gap-0 pointer-events-none">
-        <div className="pointer-events-auto w-full flex flex-col items-center gap-0">
+      <div className="fixed inset-0 flex flex-col items-center justify-center pointer-events-none">
+        <div className="pointer-events-auto w-full flex flex-col items-center" style={{ marginTop: '-20px' }}>
           <MainContainer
+            cardRef={profileRef}
             isVisible={showContent}
             onDiaryToggle={() => setDiaryOpen(d => !d)}
           />
-          <MusicPlayer isVisible={showMusic} isUnlocked={isUnlocked} />
+          <MusicPlayer
+            cardRef={musicRef}
+            isVisible={showMusic}
+            isUnlocked={isUnlocked}
+          />
         </div>
       </div>
 

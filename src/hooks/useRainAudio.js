@@ -1,66 +1,60 @@
 import { useEffect, useRef } from 'react'
 
 export function useRainAudio(isUnlocked) {
-  const ctxRef = useRef(null)
-  const gainRef = useRef(null)
-  const bufferRef = useRef(null)
-  const sourceRef = useRef(null)
+  // Keep everything in a single stable ref so async callbacks always read latest
+  const r = useRef({ ctx: null, gain: null, buffer: null, source: null, unlocked: false })
 
-  // Load buffer once on mount
+  function start() {
+    const s = r.current
+    if (!s.ctx || !s.gain || !s.buffer || !s.unlocked) return
+    if (s.source) { try { s.source.stop() } catch {} }
+    const src = s.ctx.createBufferSource()
+    src.buffer = s.buffer
+    src.loop = true
+    s.gain.gain.setValueAtTime(0, s.ctx.currentTime)
+    s.gain.gain.linearRampToValueAtTime(1, s.ctx.currentTime + 3)
+    src.connect(s.gain)
+    src.start(0)
+    s.source = src
+  }
+
   useEffect(() => {
     const ctx = new (window.AudioContext || window.webkitAudioContext)()
     const gain = ctx.createGain()
     gain.connect(ctx.destination)
-    ctxRef.current = ctx
-    gainRef.current = gain
+    r.current.ctx = ctx
+    r.current.gain = gain
 
     fetch('/img/rain.mp3')
-      .then(r => r.arrayBuffer())
-      .then(b => ctx.decodeAudioData(b))
-      .then(decoded => { bufferRef.current = decoded })
+      .then(res => res.arrayBuffer())
+      .then(buf => ctx.decodeAudioData(buf))
+      .then(decoded => {
+        r.current.buffer = decoded
+        // If user already clicked unlock before buffer finished loading, start now
+        if (r.current.unlocked) ctx.resume().then(start).catch(() => {})
+      })
       .catch(() => {})
 
-    return () => { try { ctx.close() } catch {} }
-  }, [])
-
-  function startLoop() {
-    const ctx = ctxRef.current
-    const gain = gainRef.current
-    const buffer = bufferRef.current
-    if (!ctx || !gain || !buffer) return
-    if (sourceRef.current) { try { sourceRef.current.stop() } catch {} }
-
-    const src = ctx.createBufferSource()
-    src.buffer = buffer
-    src.loop = true
-    gain.gain.setValueAtTime(0, ctx.currentTime)
-    gain.gain.linearRampToValueAtTime(1, ctx.currentTime + 3)
-    src.connect(gain)
-    src.start(0)
-    sourceRef.current = src
-  }
-
-  // Start playing after unlock
-  useEffect(() => {
-    if (!isUnlocked) return
-    const ctx = ctxRef.current
-    if (!ctx) return
-    ctx.resume().then(startLoop).catch(() => {})
-  }, [isUnlocked])
-
-  // Keep alive on visibility/focus change
-  useEffect(() => {
     const keepAlive = async () => {
-      const ctx = ctxRef.current
-      if (!isUnlocked || !ctx || ctx.state === 'running') return
-      await ctx.resume().catch(() => {})
-      startLoop()
+      const s = r.current
+      if (!s.unlocked || !s.ctx || s.ctx.state === 'running') return
+      await s.ctx.resume().catch(() => {})
+      start()
     }
     document.addEventListener('visibilitychange', keepAlive)
     window.addEventListener('focus', keepAlive)
+
     return () => {
       document.removeEventListener('visibilitychange', keepAlive)
       window.removeEventListener('focus', keepAlive)
+      try { ctx.close() } catch {}
     }
+  }, [])
+
+  useEffect(() => {
+    if (!isUnlocked) return
+    r.current.unlocked = true
+    const ctx = r.current.ctx
+    if (ctx) ctx.resume().then(start).catch(() => {})
   }, [isUnlocked])
 }

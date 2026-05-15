@@ -8,7 +8,6 @@ const STAR_PATH = 'M502.842,225.679c14.769-14.769,6.892-40.369-13.785-43.323l-11
 
 export function useCursorSparkles() {
   useEffect(() => {
-    // Inject twinkle keyframe
     const style = document.createElement('style')
     style.textContent = `@keyframes twinkle{0%{opacity:0.9}50%{opacity:0.36}100%{opacity:0.9}}`
     document.head.appendChild(style)
@@ -17,12 +16,11 @@ export function useCursorSparkles() {
     const dots = [], dotX = [], dotY = [], dotTicks = []
     let docH = document.documentElement.scrollHeight
     let docW = document.documentElement.scrollWidth
-    let enabled = true
-    let timer = null
+    let rafId = null
+    let bgInterval = null
 
     const svgNS = 'http://www.w3.org/2000/svg'
 
-    // Create elements
     for (let i = 0; i < SPARKLES; i++) {
       const dot = document.createElement('div')
       Object.assign(dot.style, { position:'absolute', height:'3px', width:'3px', overflow:'hidden', visibility:'hidden', zIndex:'999', borderRadius:'50%', pointerEvents:'none' })
@@ -58,7 +56,6 @@ export function useCursorSparkles() {
     function createStar(x, y, prob = 1) {
       if (x+STAR_SIZE >= docW || y+STAR_SIZE >= docH) return
       if (Math.random() > prob) return
-
       let minLife = LIFETIME*2+1, minIdx = NaN
       for (let i = 0; i < SPARKLES; i++) {
         if (!starTicks[i]) { minLife = null; minIdx = i; break }
@@ -66,11 +63,9 @@ export function useCursorSparkles() {
       }
       if (minLife) starToTiny(minIdx)
       if (isNaN(minIdx)) return
-
       const color = randColor()
       const scale = 0.5 + Math.random() * 0.5
-      const path = stars[minIdx].querySelector('path')
-      path.setAttribute('fill', color)
+      stars[minIdx].querySelector('path').setAttribute('fill', color)
       stars[minIdx].firstChild.style.transform = `scale(${scale})`
       stars[minIdx].style.filter = `drop-shadow(0 0 3px ${color})`
       stars[minIdx].style.animation = `twinkle ${1+Math.random()}s infinite alternate`
@@ -83,9 +78,9 @@ export function useCursorSparkles() {
     }
 
     function updateStar(i) {
-      if (starTicks[i] === null) return false
+      if (starTicks[i] === null) return
       starTicks[i]--
-      if (starTicks[i] === 0) { starToTiny(i); return false }
+      if (starTicks[i] === 0) { starToTiny(i); return }
       if (starTicks[i] === LIFETIME) stars[i].style.opacity = '0.63'
       if (starTicks[i] % 5 === 0) stars[i].style.opacity = String(0.9*(0.7+Math.random()*0.3))
       starY[i] += 0.5 + Math.random(); starX[i] += (i%5-2)/6
@@ -93,50 +88,50 @@ export function useCursorSparkles() {
       stars[i].style.transform = `rotate(${rot+(Math.random()-0.5)*2}deg)`
       if (starY[i]+STAR_SIZE < docH && starX[i]+STAR_SIZE < docW) {
         stars[i].style.top = starY[i]+'px'; stars[i].style.left = starX[i]+'px'
-        return true
+      } else {
+        starTicks[i] = null; Object.assign(stars[i].style, { left:'0px', top:'0px', visibility:'hidden' })
       }
-      starTicks[i] = null; Object.assign(stars[i].style, { left:'0px', top:'0px', visibility:'hidden' })
-      return false
     }
 
     function updateDot(i) {
-      if (dotTicks[i] === null) return false
+      if (dotTicks[i] === null) return
       dotTicks[i]--
       if (dotTicks[i] === LIFETIME) { dots[i].style.width='1px'; dots[i].style.height='1px'; dots[i].style.opacity='0.45' }
       dotY[i] += 0.7+Math.random(); dotX[i] += (i%4-2)/5
       if (dotY[i]+3 < docH && dotX[i]+3 < docW) {
         dots[i].style.top = dotY[i]+'px'; dots[i].style.left = dotX[i]+'px'
-        return true
+      } else {
+        dotTicks[i] = null; Object.assign(dots[i].style, { top:'0px', left:'0px', visibility:'hidden' })
       }
-      dotTicks[i] = null; Object.assign(dots[i].style, { top:'0px', left:'0px', visibility:'hidden' })
-      return false
     }
 
+    // Use rAF instead of setTimeout for smooth, GPU-synced animation
     function loop() {
       for (let i = 0; i < SPARKLES; i++) { updateStar(i); updateDot(i) }
-      timer = setTimeout(loop, 1000/60)
+      rafId = requestAnimationFrame(loop)
     }
-    loop()
+    rafId = requestAnimationFrame(loop)
 
     const onMove = (e) => {
-      if (!enabled || e.buttons) return
+      if (e.buttons) return
       const dist = Math.sqrt(e.movementX**2 + e.movementY**2)
+      if (dist < 1) return
       if (dist > 5) {
         for (let i = 0; i < 3; i++) createStar(e.pageX+(Math.random()-0.5)*20, e.pageY+(Math.random()-0.5)*20, 0.7)
       }
       let mx = e.pageX, my = e.pageY
-      const dx = e.movementX*10000*2/dist, dy = e.movementY*10000*2/dist
+      const safeD = Math.max(dist, 0.1)
+      const dx = e.movementX*10000*2/safeD, dy = e.movementY*10000*2/safeD
       let cx = 0
       const prob = dist/10000
       while (Math.abs(cx) < Math.abs(e.movementX)) {
         createStar(mx, my, prob)
         const d = Math.random(); mx -= dx*d; my -= dy*d; cx += dx*d
+        if (Math.abs(dx*d) < 0.001) break
       }
     }
 
-    const bgInterval = setInterval(() => {
-      if (enabled) createStar(Math.random()*docW, Math.random()*docH, 0.3)
-    }, 500)
+    bgInterval = setInterval(() => createStar(Math.random()*docW, Math.random()*docH, 0.3), 500)
 
     const onResize = () => {
       docH = document.documentElement.scrollHeight
@@ -147,8 +142,7 @@ export function useCursorSparkles() {
     window.addEventListener('resize', onResize)
 
     return () => {
-      enabled = false
-      clearTimeout(timer)
+      cancelAnimationFrame(rafId)
       clearInterval(bgInterval)
       document.removeEventListener('mousemove', onMove)
       window.removeEventListener('resize', onResize)

@@ -411,7 +411,7 @@ body {
   max-height: 150px;
   text-align: center;
   border: 2px solid rgba(175,175,175,0.048);
-  margin-top: -40px;
+  margin-top: 15px;
   overflow: hidden;
   will-change: transform;
   transform-style: preserve-3d;

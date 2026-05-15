@@ -1,6 +1,4 @@
-import { useRef } from 'react'
 import { useMusicPlayer } from '../hooks/useMusicPlayer'
-import { useContainerTilt } from '../hooks/useContainerTilt'
 
 function PrevIcon() {
   return (
@@ -34,10 +32,7 @@ function PauseIcon() {
   )
 }
 
-export default function MusicPlayer({ isVisible, isUnlocked }) {
-  const cardRef = useRef(null)
-  useContainerTilt([cardRef])
-
+export default function MusicPlayer({ cardRef, isVisible, isUnlocked }) {
   const { title, playing, currentTime, totalTime, progress, prev, next, togglePlay, seek } =
     useMusicPlayer(isUnlocked)
 
@@ -49,7 +44,12 @@ export default function MusicPlayer({ isVisible, isUnlocked }) {
   return (
     <div
       ref={cardRef}
-      className={`music-card fade-in-element ${isVisible ? 'visible' : ''}`}
+      className="music-card"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 0.5s ease',
+        transitionDelay: isVisible ? '0ms' : '0ms',
+      }}
     >
       <div className="music-player">
         <div className="song-info text-center text-white mb-1 font-bold">
