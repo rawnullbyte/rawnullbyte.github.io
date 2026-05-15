@@ -32,9 +32,9 @@ function PauseIcon() {
   )
 }
 
-export default function MusicPlayer({ cardRef, isVisible, isUnlocked }) {
+export default function MusicPlayer({ cardRef, isVisible, isUnlocked, volume }) {
   const { title, playing, currentTime, totalTime, progress, prev, next, togglePlay, seek } =
-    useMusicPlayer(isUnlocked)
+    useMusicPlayer(isUnlocked, volume)
 
   function handleTimelineClick(e) {
     const rect = e.currentTarget.getBoundingClientRect()

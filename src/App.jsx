@@ -13,12 +13,13 @@ export default function App() {
   const [isUnlocked, setIsUnlocked] = useState(false)
   const [showContent, setShowContent] = useState(false)
   const [showMusic, setShowMusic] = useState(false)
+  const [volume, setVolume] = useState(1)
 
   const profileRef = useRef(null)
   const musicRef = useRef(null)
   useContainerTilt([profileRef, musicRef])
 
-  useRainAudio(isUnlocked)
+  useRainAudio(isUnlocked, volume)
   useCursorSparkles()
 
   function handleUnlock() {
@@ -44,12 +45,12 @@ export default function App() {
     <>
       <Lockscreen isUnlocked={isUnlocked} onUnlock={handleUnlock} />
       <VideoBackground />
-      <VolumeControl />
+      <VolumeControl volume={volume} onVolumeChange={setVolume} />
 
       <div className="fixed inset-0 flex flex-col items-center justify-center pointer-events-none">
         <div className="pointer-events-auto w-full flex flex-col items-center" style={{ marginTop: '-20px' }}>
           <MainContainer cardRef={profileRef} isVisible={showContent} />
-          <MusicPlayer cardRef={musicRef} isVisible={showMusic} isUnlocked={isUnlocked} />
+          <MusicPlayer cardRef={musicRef} isVisible={showMusic} isUnlocked={isUnlocked} volume={volume} />
         </div>
       </div>
 

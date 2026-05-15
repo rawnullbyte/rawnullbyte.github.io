@@ -29,14 +29,13 @@ function fmt(t) {
   return `${m}:${s < 10 ? '0' : ''}${s}`
 }
 
-export function useMusicPlayer(isUnlocked) {
+export function useMusicPlayer(isUnlocked, volume = 1) {
   const audioRef = useRef(null)
   const playingRef = useRef(false)
   const [idx, setIdx] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
-  const [volume, setVolume] = useState(1)
 
   // Init audio element once
   useEffect(() => {
@@ -94,6 +93,11 @@ export function useMusicPlayer(isUnlocked) {
     audioRef.current?.play().catch(() => {})
   }, [isUnlocked])
 
+  // Sync volume from parent
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.volume = volume
+  }, [volume])
+
   // Media Session (MPRIS) — lets OS/browser control play/pause/skip
   useEffect(() => {
     if (!('mediaSession' in navigator)) return
@@ -132,22 +136,15 @@ export function useMusicPlayer(isUnlocked) {
     audio.currentTime = pos * audio.duration
   }
 
-  function changeVolume(v) {
-    setVolume(v)
-    if (audioRef.current) audioRef.current.volume = v
-  }
-
   return {
     title: playing ? PLAYLIST[idx] : 'so quiet...',
     playing,
     currentTime: fmt(currentTime),
     totalTime: fmt(duration),
     progress: duration ? (currentTime / duration) * 100 : 0,
-    volume,
     togglePlay,
     prev,
     next,
     seek,
-    changeVolume,
   }
 }

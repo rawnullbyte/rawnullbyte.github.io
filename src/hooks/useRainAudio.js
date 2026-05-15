@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react'
 
-export function useRainAudio(isUnlocked) {
-  // Keep everything in a single stable ref so async callbacks always read latest
-  const r = useRef({ ctx: null, gain: null, buffer: null, source: null, unlocked: false })
+export function useRainAudio(isUnlocked, volume = 1) {
+  const r = useRef({ ctx: null, gain: null, buffer: null, source: null, unlocked: false, volume: 1 })
 
   function start() {
     const s = r.current
@@ -12,7 +11,7 @@ export function useRainAudio(isUnlocked) {
     src.buffer = s.buffer
     src.loop = true
     s.gain.gain.setValueAtTime(0, s.ctx.currentTime)
-    s.gain.gain.linearRampToValueAtTime(1, s.ctx.currentTime + 3)
+    s.gain.gain.linearRampToValueAtTime(s.volume, s.ctx.currentTime + 3)
     src.connect(s.gain)
     src.start(0)
     s.source = src
@@ -57,4 +56,12 @@ export function useRainAudio(isUnlocked) {
     const ctx = r.current.ctx
     if (ctx) ctx.resume().then(start).catch(() => {})
   }, [isUnlocked])
+
+  useEffect(() => {
+    r.current.volume = volume
+    const s = r.current
+    if (!s.gain || !s.ctx) return
+    s.gain.gain.cancelScheduledValues(s.ctx.currentTime)
+    s.gain.gain.setValueAtTime(volume, s.ctx.currentTime)
+  }, [volume])
 }

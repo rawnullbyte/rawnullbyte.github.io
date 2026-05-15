@@ -1,18 +1,7 @@
-import { useRef } from 'react'
-
-export default function VolumeControl() {
-  const gainRef = useRef(null)
-
-  function handleChange(e) {
-    // Controls the rain AudioContext gain via a shared ref if needed.
-    // For now stores value for future rain gain control.
-    gainRef.current = e.target.value
-  }
-
+export default function VolumeControl({ volume, onVolumeChange }) {
   return (
     <div className="volume-control">
       <svg
-        className="volume-icon"
         xmlns="http://www.w3.org/2000/svg"
         width="2em"
         height="2em"
@@ -29,9 +18,9 @@ export default function VolumeControl() {
         className="volume-slider"
         min="0"
         max="1"
-        step="0.1"
-        defaultValue="1"
-        onChange={handleChange}
+        step="0.01"
+        value={volume}
+        onChange={e => onVolumeChange(parseFloat(e.target.value))}
       />
     </div>
   )
