@@ -29,6 +29,15 @@ body {
 *::-webkit-scrollbar-track { border-radius: 5px; background-color: rgb(22,22,22); }
 *::-webkit-scrollbar-thumb { border-radius: 5px; background-color: #101010; }
 
+/* ─── Keyframes ─────────────────────────────────────── */
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+  to   { text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff; }
+}
+
+@keyframes fadeInOut { 0% { opacity: 0.4; } 100% { opacity: 1; } }
+@keyframes textPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
 /* ─── Video Background ──────────────────────────────── */
 .video-container { position: fixed; inset: 0; z-index: -1; width: 100vw; height: 100vh; }
 .video-container .placeholder { position: absolute; inset: 0; background-size: cover; background-position: center; }
@@ -103,7 +112,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(5px);
   border-radius: 15px;
   min-height: 15rem;
   padding: 35px 15px;
@@ -151,7 +160,7 @@ body {
   width: fit-content;
   pointer-events: none;
   color: #ffffff;
-  text-shadow: 0 0 20px #fff, 0 0 30px #fff;
+  animation: glow 1s ease-in-out infinite alternate;
 }
 
 .profile-username span { font-weight: 600; font-size: 40px; }
@@ -193,7 +202,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   min-height: 5rem;
   padding: 35px 15px;
@@ -227,7 +236,3 @@ body {
 }
 
 .fade-in-element.visible { opacity: 1; transform: translateY(0); }
-
-/* ─── Keyframes ─────────────────────────────────────── */
-@keyframes fadeInOut { 0% { opacity: 0.4; } 100% { opacity: 1; } }
-@keyframes textPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
