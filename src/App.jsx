@@ -4,7 +4,6 @@ import VideoBackground from './components/VideoBackground'
 import VolumeControl from './components/VolumeControl'
 import MainContainer from './components/MainContainer'
 import MusicPlayer from './components/MusicPlayer'
-import DiaryWindow from './components/DiaryWindow'
 import ViewCounter from './components/ViewCounter'
 import { useRainAudio } from './hooks/useRainAudio'
 import { useCursorSparkles } from './hooks/useCursorSparkles'
@@ -14,9 +13,7 @@ export default function App() {
   const [isUnlocked, setIsUnlocked] = useState(false)
   const [showContent, setShowContent] = useState(false)
   const [showMusic, setShowMusic] = useState(false)
-  const [isDiaryOpen, setDiaryOpen] = useState(false)
 
-  // Both cards share a single tilt so they move together (matches original)
   const profileRef = useRef(null)
   const musicRef = useRef(null)
   useContainerTilt([profileRef, musicRef])
@@ -51,20 +48,11 @@ export default function App() {
 
       <div className="fixed inset-0 flex flex-col items-center justify-center pointer-events-none">
         <div className="pointer-events-auto w-full flex flex-col items-center" style={{ marginTop: '-20px' }}>
-          <MainContainer
-            cardRef={profileRef}
-            isVisible={showContent}
-            onDiaryToggle={() => setDiaryOpen(d => !d)}
-          />
-          <MusicPlayer
-            cardRef={musicRef}
-            isVisible={showMusic}
-            isUnlocked={isUnlocked}
-          />
+          <MainContainer cardRef={profileRef} isVisible={showContent} />
+          <MusicPlayer cardRef={musicRef} isVisible={showMusic} isUnlocked={isUnlocked} />
         </div>
       </div>
 
-      <DiaryWindow isOpen={isDiaryOpen} onClose={() => setDiaryOpen(false)} />
       <ViewCounter />
     </>
   )

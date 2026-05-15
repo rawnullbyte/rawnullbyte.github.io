@@ -12,6 +12,7 @@ export function useContainerTilt(refs, intensity = 10) {
     function schedule() {
       if (runningRef.current) return
       runningRef.current = true
+      elements.forEach(el => { el.style.willChange = 'transform' })
       stateRef.current.lastTime = performance.now()
       rafRef.current = requestAnimationFrame(animate)
     }
@@ -52,7 +53,7 @@ export function useContainerTilt(refs, intensity = 10) {
       const atRest = Math.abs(s.currentX) < 0.01 && Math.abs(s.currentY) < 0.01
                   && Math.abs(s.targetX) < 0.01 && Math.abs(s.targetY) < 0.01
       if (atRest) {
-        elements.forEach(el => { el.style.transform = '' })
+        elements.forEach(el => { el.style.transform = ''; el.style.willChange = '' })
         runningRef.current = false
         return
       }
@@ -63,6 +64,7 @@ export function useContainerTilt(refs, intensity = 10) {
       elements.forEach(el => {
         el.removeEventListener('mousemove', onMove)
         el.removeEventListener('mouseleave', onLeave)
+        el.style.willChange = ''
       })
       cancelAnimationFrame(rafRef.current)
       runningRef.current = false

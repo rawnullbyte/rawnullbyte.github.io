@@ -48,18 +48,23 @@ export function useMusicPlayer(isUnlocked) {
     const onMeta = () => setDuration(audio.duration)
     const onPlay = () => { setPlaying(true); playingRef.current = true }
     const onPause = () => { setPlaying(false); playingRef.current = false }
-    const onEnd = () => {
-      setIdx(i => {
-        const next = (i + 1) % PLAYLIST.length
-        return next
-      })
-    }
+    const onEnd = () => setIdx(i => (i + 1) % PLAYLIST.length)
 
     audio.addEventListener('timeupdate', onTime)
     audio.addEventListener('loadedmetadata', onMeta)
     audio.addEventListener('play', onPlay)
     audio.addEventListener('pause', onPause)
     audio.addEventListener('ended', onEnd)
+
+    // Spacebar toggles play/pause
+    function onKey(e) {
+      if (e.code !== 'Space') return
+      const tag = document.activeElement?.tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return
+      e.preventDefault()
+      audio.paused ? audio.play().catch(() => {}) : audio.pause()
+    }
+    document.addEventListener('keydown', onKey)
 
     return () => {
       audio.pause()
@@ -68,6 +73,7 @@ export function useMusicPlayer(isUnlocked) {
       audio.removeEventListener('play', onPlay)
       audio.removeEventListener('pause', onPause)
       audio.removeEventListener('ended', onEnd)
+      document.removeEventListener('keydown', onKey)
     }
   }, [])
 
@@ -87,6 +93,22 @@ export function useMusicPlayer(isUnlocked) {
     if (!isUnlocked) return
     audioRef.current?.play().catch(() => {})
   }, [isUnlocked])
+
+  // Media Session (MPRIS) — lets OS/browser control play/pause/skip
+  useEffect(() => {
+    if (!('mediaSession' in navigator)) return
+    navigator.mediaSession.metadata = new MediaMetadata({ title: PLAYLIST[idx], artist: 'nullbyte.rip' })
+    navigator.mediaSession.setActionHandler('play', () => audioRef.current?.play().catch(() => {}))
+    navigator.mediaSession.setActionHandler('pause', () => audioRef.current?.pause())
+    navigator.mediaSession.setActionHandler('previoustrack', () => {
+      playingRef.current = true
+      setIdx(i => (i - 1 + PLAYLIST.length) % PLAYLIST.length)
+    })
+    navigator.mediaSession.setActionHandler('nexttrack', () => {
+      playingRef.current = true
+      setIdx(i => (i + 1) % PLAYLIST.length)
+    })
+  }, [idx])
 
   function togglePlay() {
     const audio = audioRef.current

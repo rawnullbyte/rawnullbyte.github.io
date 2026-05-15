@@ -28,7 +28,6 @@ export function useCursorSparkles() {
         height: '3px', width: '3px', overflow: 'hidden',
         visibility: 'hidden', zIndex: '999',
         borderRadius: '50%', pointerEvents: 'none',
-        willChange: 'transform',
       })
       document.body.appendChild(dot)
       dots[i] = dot; dotTicks[i] = null
@@ -39,7 +38,6 @@ export function useCursorSparkles() {
         height: STAR_SIZE + 'px', width: STAR_SIZE + 'px',
         overflow: 'visible', visibility: 'hidden',
         zIndex: '999', pointerEvents: 'none',
-        willChange: 'transform',
       })
       const svg = document.createElementNS(svgNS, 'svg')
       svg.setAttribute('height', STAR_SIZE + 'px'); svg.setAttribute('width', STAR_SIZE + 'px')
@@ -89,7 +87,6 @@ export function useCursorSparkles() {
       stars[minIdx].style.filter = `drop-shadow(0 0 3px ${color})`
       stars[minIdx].style.animation = `twinkle ${1 + Math.random()}s infinite alternate`
       stars[minIdx].style.transform = `translate(${x}px,${y}px) rotate(${starRot[minIdx]}deg)`
-      stars[minIdx].style.opacity = '0.9'
       stars[minIdx].style.visibility = 'visible'
       starX[minIdx] = x; starY[minIdx] = y
       starTicks[minIdx] = LIFETIME * 2
@@ -99,8 +96,6 @@ export function useCursorSparkles() {
       if (starTicks[i] === null) return
       starTicks[i]--
       if (starTicks[i] === 0) { starToTiny(i); return }
-      if (starTicks[i] === LIFETIME) stars[i].style.opacity = '0.63'
-      if (starTicks[i] % 5 === 0) stars[i].style.opacity = String(0.9 * (0.7 + Math.random() * 0.3))
       starY[i] += 0.5 + Math.random()
       starX[i] += (i % 5 - 2) / 6
       starRot[i] += (Math.random() - 0.5) * 2
@@ -115,7 +110,7 @@ export function useCursorSparkles() {
     function updateDot(i) {
       if (dotTicks[i] === null) return
       dotTicks[i]--
-      if (dotTicks[i] === LIFETIME) { dots[i].style.width = '1px'; dots[i].style.height = '1px'; dots[i].style.opacity = '0.45' }
+      if (dotTicks[i] === 0) { dots[i].style.visibility = 'hidden'; return }
       dotY[i] += 0.7 + Math.random()
       dotX[i] += (i % 4 - 2) / 5
       if (dotY[i] + 3 < vH && dotX[i] + 3 < vW) {

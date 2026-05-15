@@ -30,30 +30,9 @@ body {
 *::-webkit-scrollbar-thumb { border-radius: 5px; background-color: #101010; }
 
 /* ─── Video Background ──────────────────────────────── */
-.video-container {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  width: 100vw;
-  height: 100vh;
-}
-
-.video-container .placeholder {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-}
-
-.video-container video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.7;
-  filter: contrast(1.2);
-}
+.video-container { position: fixed; inset: 0; z-index: -1; width: 100vw; height: 100vh; }
+.video-container .placeholder { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.video-container video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
 
 /* ─── Volume Control ────────────────────────────────── */
 .volume-control {
@@ -108,11 +87,7 @@ body {
   transition: opacity 0.5s cubic-bezier(0.165,0.84,0.44,1), transform 0.5s cubic-bezier(0.165,0.84,0.44,1);
 }
 
-.lockscreen.unlocking {
-  opacity: 0;
-  transform: scale(1.1);
-  pointer-events: none;
-}
+.lockscreen.unlocking { opacity: 0; transform: scale(1.1); pointer-events: none; }
 
 .click-text {
   color: white;
@@ -128,7 +103,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  backdrop-filter: blur(5px);
+  background: rgba(0,0,0,0.3);
   border-radius: 15px;
   min-height: 15rem;
   padding: 35px 15px;
@@ -138,8 +113,6 @@ body {
   border: 2px solid rgba(175,175,175,0.048);
   margin-top: 80px;
   overflow: visible;
-  transform-style: preserve-3d;
-  will-change: transform;
 }
 
 @media (max-width: 768px) {
@@ -156,27 +129,6 @@ body {
     height: 580px;
     margin-top: 60px;
   }
-}
-
-/* ─── Diary Anchor ──────────────────────────────────── */
-.diary-anchor {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  margin: 0;
-  z-index: 10;
-  color: #ffffff;
-  animation: glow 1s ease-in-out infinite alternate;
-}
-
-.diary-anchor svg {
-  filter: drop-shadow(0 0 10px #ffffff);
-  transition: transform 0.3s ease;
-}
-
-.diary-anchor:hover svg {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 15px #ffffff);
 }
 
 /* ─── Avatar ────────────────────────────────────────── */
@@ -198,7 +150,8 @@ body {
   font-size: 50px;
   width: fit-content;
   pointer-events: none;
-  animation: glow 1s ease-in-out infinite alternate;
+  color: #ffffff;
+  text-shadow: 0 0 20px #fff, 0 0 30px #fff;
 }
 
 .profile-username span { font-weight: 600; font-size: 40px; }
@@ -240,7 +193,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.3);
   border-radius: 15px;
   min-height: 5rem;
   padding: 35px 15px;
@@ -251,8 +204,6 @@ body {
   border: 2px solid rgba(175,175,175,0.048);
   margin-top: 15px;
   overflow: hidden;
-  will-change: transform;
-  transform-style: preserve-3d;
 }
 
 @media (max-width: 768px) { .music-card { min-height: 10rem; max-width: 90%; } }
@@ -268,86 +219,6 @@ body {
 }
 @media (max-width: 413px) { .music-card { max-width: 70%; border-radius: 10px; } }
 
-/* ─── Diary Window ──────────────────────────────────── */
-.diary-window {
-  position: fixed;
-  top: 100px;
-  left: 100px;
-  width: 50vw;
-  height: 50vh;
-  min-width: 300px;
-  min-height: 200px;
-  z-index: 10001;
-  background-color: rgba(20,20,20,0.4);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  resize: both;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  opacity: 0;
-  transform: scale(0.9) translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  pointer-events: none;
-}
-
-.diary-window.active {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-  pointer-events: auto;
-}
-
-.diary-window::after {
-  content: '';
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  cursor: nwse-resize;
-  background: linear-gradient(135deg, transparent 6px, rgba(255,255,255,0.2) 6px);
-}
-
-.diary-header {
-  padding: 12px 15px;
-  background: rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  cursor: grab;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  user-select: none;
-  flex-shrink: 0;
-}
-
-.diary-header:active { cursor: grabbing; }
-
-.diary-content-area {
-  padding: 20px;
-  overflow-y: auto;
-  flex-grow: 1;
-  scrollbar-width: none;
-}
-
-.diary-content-area::-webkit-scrollbar { display: none; }
-
-.diary-content-area a { color: #67cae2; }
-.diary-content-area img { max-width: 100%; border-radius: 8px; margin: 8px 0; }
-.diary-content-area p { margin-bottom: 12px; line-height: 1.6; }
-.diary-content-area h1, .diary-content-area h2, .diary-content-area h3 { margin: 16px 0 8px; }
-
-.close-diary {
-  opacity: 0.6;
-  transition: 0.2s;
-  display: flex;
-  align-items: center;
-  cursor: pointer !important;
-}
-
-.close-diary:hover { opacity: 1; color: #ff5f56; }
-
 /* ─── Fade-in animation helper ──────────────────────── */
 .fade-in-element {
   opacity: 0;
@@ -355,23 +226,8 @@ body {
   transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
-.fade-in-element.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
 /* ─── Keyframes ─────────────────────────────────────── */
-@keyframes glow {
-  from { text-shadow: 0 0 10px #fff, 0 0 20px #fff; }
-  to   { text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff; }
-}
-
-@keyframes fadeInOut {
-  0%   { opacity: 0.4; }
-  100% { opacity: 1; }
-}
-
-@keyframes textPulse {
-  0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.05); }
-}
+@keyframes fadeInOut { 0% { opacity: 0.4; } 100% { opacity: 1; } }
+@keyframes textPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
