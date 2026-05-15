@@ -36,17 +36,18 @@ const LINKS = [
 
 export default function SocialLinks() {
   return (
-    <div className="social-links">
+    <div className="flex items-center gap-4 mt-8 [filter:drop-shadow(0_0_0.9px_#ffffff)]">
       {LINKS.map(({ type, href, svg, vb }) => (
         <a
           key={type}
-          className="social-link"
+          className="social-link flex items-center relative no-underline text-white transition-all duration-300"
           href={href}
           target="_blank"
           rel="noreferrer"
           data-type={type}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox={vb}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox={vb}
+            className="transition-transform duration-300 hover:scale-[1.15]">
             {svg}
           </svg>
         </a>

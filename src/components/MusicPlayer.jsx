@@ -45,31 +45,27 @@ export default function MusicPlayer({ cardRef, isVisible, isUnlocked }) {
     <div
       ref={cardRef}
       className="music-card"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transition: 'opacity 0.5s ease',
-        transitionDelay: isVisible ? '0ms' : '0ms',
-      }}
+      style={{ opacity: isVisible ? 1 : 0, transition: 'opacity 0.5s ease' }}
     >
-      <div className="music-player">
-        <div className="song-info text-center text-white mb-1 font-bold">
-          <span className="song-title">{title}</span>
+      <div className="w-[500px] max-w-full rounded-[10px] font-chillax text-lg">
+        <div className="text-center text-white mb-1 font-bold">
+          <span className="relative -top-2.5 mb-3 block">{title}</span>
         </div>
 
-        <div className="player-timeline">
-          <span className="text-xs mr-1" style={{ opacity: 0.9 }}>{currentTime}</span>
-          <div className="timeline-track" onClick={handleTimelineClick}>
-            <div className="timeline-fill" style={{ width: `${progress}%` }} />
+        <div className="flex items-center -mt-3">
+          <span className="text-xs mr-1 opacity-90">{currentTime}</span>
+          <div className="flex-grow h-1 bg-white/[0.21] rounded-sm relative cursor-pointer" onClick={handleTimelineClick}>
+            <div className="absolute top-0 left-0 h-full bg-white rounded-sm" style={{ width: `${progress}%` }} />
           </div>
-          <span className="text-xs ml-1" style={{ opacity: 0.9 }}>{totalTime}</span>
+          <span className="text-xs ml-1 opacity-90">{totalTime}</span>
         </div>
 
-        <div className="player-controls">
-          <span className="ctrl-prev" onClick={prev}><PrevIcon /></span>
-          <span className="ctrl-play" onClick={togglePlay}>
+        <div className="flex justify-center items-center text-[30px] gap-2">
+          <span className="opacity-40 hover:opacity-100 transition-opacity duration-[400ms] cursor-pointer" onClick={prev}><PrevIcon /></span>
+          <span className="text-[40px] cursor-pointer" onClick={togglePlay}>
             {playing ? <PauseIcon /> : <PlayIcon />}
           </span>
-          <span className="ctrl-next" onClick={next}><NextIcon /></span>
+          <span className="opacity-40 hover:opacity-100 transition-opacity duration-[400ms] cursor-pointer" onClick={next}><NextIcon /></span>
         </div>
       </div>
     </div>

@@ -57,11 +57,11 @@ export default function Badges() {
 
   return (
     <>
-      <div className="profile-badges">
+      <div className="mb-[17px] mt-2 flex items-center bg-white/[0.08] border-2 border-white/[0.04] rounded-[25px] gap-[5.5px] justify-center px-[10px] py-[6px]">
         {BADGE_DEFS.map(({ key, label, svg, vb, w, h }) => (
           <div
             key={key}
-            className="profile-badge"
+            className="relative text-[20.5px] flex items-center text-white"
             onMouseEnter={e => showTip(e, label)}
             onMouseLeave={hideTip}
           >
@@ -80,14 +80,8 @@ export default function Badges() {
 
       {tooltip.visible && (
         <div
-          className="badge-tooltip"
-          style={{
-            left: tooltip.x,
-            top: tooltip.y,
-            transform: 'translate(-50%, -100%)',
-            opacity: 1,
-            visibility: 'visible',
-          }}
+          className="fixed bg-black/85 text-white text-[15px] font-semibold rounded-2xl px-4 py-1 z-10 whitespace-nowrap pointer-events-none"
+          style={{ left: tooltip.x, top: tooltip.y, transform: 'translate(-50%, -100%)' }}
         >
           {tooltip.label}
         </div>

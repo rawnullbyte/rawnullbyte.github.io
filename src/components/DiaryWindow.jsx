@@ -64,7 +64,10 @@ export default function DiaryWindow({ isOpen, onClose }) {
       if (!dragRef.current.dragging) return
       dragRef.current.dragging = false
       const win = windowRef.current
-      if (win) win.style.transform = 'scale(1) translateY(0) skewX(0deg)'
+      if (!win) return
+      win.style.transition = 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1)'
+      win.style.transform = 'scale(1) translateY(0) skewX(0deg)'
+      setTimeout(() => { if (windowRef.current) windowRef.current.style.transition = '' }, 350)
     }
 
     header.addEventListener('mousedown', onDown)
@@ -95,8 +98,8 @@ export default function DiaryWindow({ isOpen, onClose }) {
 
       <div className="diary-content-area">
         {entries.map((entry, i) => (
-          <div key={i} style={{ marginBottom: 30, borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: 20 }}>
-            <div style={{ fontWeight: 'bold', color: '#dfdfdf', marginBottom: 8 }}>{entry.date}</div>
+          <div key={i} className="mb-[30px] border-b border-white/[0.08] pb-5">
+            <div className="font-bold text-[#dfdfdf] mb-2">{entry.date}</div>
             <div dangerouslySetInnerHTML={{ __html: entry.html }} />
           </div>
         ))}
