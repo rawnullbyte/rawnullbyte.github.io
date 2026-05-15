@@ -1,0 +1,577 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: url('/Aero.cur'), auto !important;
+}
+
+a, button { cursor: url('/Aero.cur'), pointer !important; }
+
+body {
+  font-family: 'Chillax', sans-serif;
+  background-color: #222222;
+  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: white;
+}
+
+::selection { color: black; background: white; }
+::-moz-selection { color: white; background: white; }
+
+/* ─── Scrollbar ─────────────────────────────────────── */
+*::-webkit-scrollbar { height: 7px; width: 7px; }
+*::-webkit-scrollbar-track { border-radius: 5px; background-color: rgb(22,22,22); }
+*::-webkit-scrollbar-thumb { border-radius: 5px; background-color: #101010; }
+
+/* ─── Keyframes ─────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+  to   { text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff; }
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1);    box-shadow: 0 0 0 0   rgba(255,255,255,0.4); }
+  70%  { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+  100% { transform: scale(1);    box-shadow: 0 0 0 0   rgba(255,255,255,0); }
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.9; }
+  50%  { opacity: 0.36; }
+  100% { opacity: 0.9; }
+}
+
+@keyframes textPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ─── Video Background ──────────────────────────────── */
+.video-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+}
+
+.video-container .placeholder {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.video-container video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  filter: contrast(1.2);
+}
+
+/* ─── Volume Control ────────────────────────────────── */
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: fixed;
+  left: 0.5%;
+  top: 1%;
+  z-index: 100;
+  opacity: 0.9;
+}
+
+.volume-slider {
+  width: 120px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  outline: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in, opacity 0.7s ease-out;
+  -webkit-appearance: none;
+  border-radius: 2px;
+  position: absolute;
+  left: 100%;
+  margin-left: 10px;
+}
+
+.volume-control:hover .volume-slider,
+.volume-slider:hover { opacity: 0.7; }
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  cursor: url('/img/Precision Select.cur') !important;
+}
+
+@media (max-width: 480px) { .volume-control { display: none; } }
+
+/* ─── Lockscreen ────────────────────────────────────── */
+.lockscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(22,22,22,0.514);
+  backdrop-filter: blur(10px);
+  transition: opacity 0.5s cubic-bezier(0.165,0.84,0.44,1), transform 0.5s cubic-bezier(0.165,0.84,0.44,1);
+}
+
+.lockscreen.unlocking {
+  opacity: 0;
+  transform: scale(1.1);
+  pointer-events: none;
+}
+
+.click-text {
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  animation: textPulse 1.5s infinite ease-in-out, fadeInOut 1.5s infinite alternate;
+}
+
+/* ─── Main Container Card ───────────────────────────── */
+.profile-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+  min-height: 15rem;
+  padding: 35px 15px;
+  width: 100%;
+  max-width: 650px;
+  text-align: center;
+  border: 2px solid rgba(175,175,175,0.048);
+  margin-top: 80px;
+  overflow: visible;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .profile-card { padding: 25px 10px; min-height: 12rem; max-width: 90%; }
+}
+@media (max-width: 480px) {
+  .profile-card {
+    padding: 20px 8px;
+    min-height: 10rem;
+    max-width: 95%;
+    border-radius: 10px;
+    margin-bottom: 80px;
+    border: 4px solid rgba(175,175,175,0.034);
+    height: 580px;
+    margin-top: 60px;
+  }
+}
+
+/* ─── Diary Anchor ──────────────────────────────────── */
+.diary-anchor {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  margin: 0;
+  z-index: 10;
+  color: #ffffff;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.diary-anchor svg {
+  filter: drop-shadow(0 0 10px #ffffff);
+  transition: transform 0.3s ease;
+}
+
+.diary-anchor:hover svg {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 15px #ffffff);
+}
+
+/* ─── Avatar ────────────────────────────────────────── */
+.profile-avatar {
+  margin-top: 50px;
+  z-index: 1;
+  border-radius: 50%;
+  height: 115px;
+  width: 115px;
+  outline: 3px solid rgba(255,255,255,0.301);
+  pointer-events: none;
+}
+
+@media (max-width: 480px) { .profile-avatar { margin-top: 20px; } }
+
+/* ─── Profile Username ──────────────────────────────── */
+.profile-username {
+  font-weight: 600;
+  font-size: 50px;
+  width: fit-content;
+  pointer-events: none;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.profile-username span { font-weight: 600; font-size: 40px; }
+
+@media (max-width: 480px) { .profile-username { font-size: 30px; margin-top: -15px; } }
+
+/* ─── Badges ────────────────────────────────────────── */
+.profile-badges {
+  margin-bottom: 17px;
+  margin-top: 8px;
+  align-items: center;
+  background-color: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.04);
+  border-radius: 25px;
+  display: flex;
+  gap: 5.5px;
+  justify-content: center;
+  padding: 6px 10px;
+}
+
+.profile-badge {
+  position: relative;
+  font-size: 20.5px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+
+.badge-tooltip {
+  position: fixed;
+  background-color: rgba(0,0,0,0.85);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 1rem;
+  padding: 4px 16px;
+  z-index: 10;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+
+/* ─── Bio ───────────────────────────────────────────── */
+.profile-bio {
+  font-weight: 570;
+  font-size: 17px;
+  margin-top: 5px;
+  color: white;
+  height: 23px;
+}
+
+/* ─── Discord Presence ──────────────────────────────── */
+.presence-wrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 28rem;
+  width: 100%;
+}
+
+.presence-card {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255,255,255,0.07);
+  border: 2px solid rgba(255,255,255,0.05);
+  border-radius: 25px;
+  max-width: fit-content;
+}
+
+@media (max-width: 480px) { .presence-card { margin-top: 50px; } }
+
+.discord-infos {
+  display: flex;
+  gap: 10px;
+  justify-content: left;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.discord-avatar-wrap {
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.discord-avatar-wrap img.avatar-img {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+}
+
+.discord-avatar-wrap .status-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  height: 17px;
+  width: 17px;
+  object-fit: cover;
+}
+
+.discord-activity { display: flex; gap: 12px; }
+
+.discord-user {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+}
+
+.discord-display-name {
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+}
+
+.discord-username {
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.7);
+  font-style: italic;
+  text-align: left;
+}
+
+/* ─── Social Links ──────────────────────────────────── */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  filter: drop-shadow(0 0 0.9px #ffffff);
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s;
+}
+
+.social-link svg { transition: transform 0.3s ease; }
+.social-link:hover svg { transform: scale(1.15); }
+
+.social-link::before {
+  content: attr(data-type);
+  opacity: 0;
+  color: white;
+  position: absolute;
+  font-size: 15px;
+  font-weight: 600;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1rem;
+  padding: 2px 16px;
+  z-index: 1;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.social-link:hover::before { opacity: 0.8; }
+
+/* ─── Music Container ───────────────────────────────── */
+.music-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  min-height: 5rem;
+  padding: 35px 15px;
+  width: 100%;
+  max-width: 650px;
+  max-height: 150px;
+  text-align: center;
+  border: 2px solid rgba(175,175,175,0.048);
+  margin-top: -40px;
+  overflow: hidden;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+@media (max-width: 768px) { .music-card { min-height: 10rem; max-width: 90%; } }
+@media (max-width: 550px) { .music-card { min-height: 12rem; height: 50px; max-width: 75%; } }
+@media (max-width: 480px) {
+  .music-card {
+    border: 4px solid rgba(175,175,175,0.034);
+    min-height: 10rem;
+    max-width: 80%;
+    border-radius: 10px;
+    bottom: 75px;
+  }
+}
+@media (max-width: 413px) { .music-card { max-width: 70%; border-radius: 10px; } }
+
+/* ─── Music Player ──────────────────────────────────── */
+.music-player {
+  width: 500px;
+  border-radius: 10px;
+  font-family: 'Chillax', sans-serif;
+  font-size: large;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .music-player { min-height: 12rem; max-width: 90%; padding-top: 40px; }
+}
+@media (max-width: 480px) {
+  .music-player { padding-top: 30px; min-height: 10rem; max-width: 80%; }
+}
+
+.song-title { margin-bottom: 12px; position: relative; top: -10px; }
+
+.player-timeline {
+  display: flex;
+  align-items: center;
+  margin-top: -12px;
+}
+
+.timeline-track {
+  flex-grow: 1;
+  height: 4px;
+  background-color: rgba(255,255,255,0.21);
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+}
+
+.timeline-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  gap: 8px;
+}
+
+.ctrl-prev, .ctrl-next { opacity: 0.4; transition: opacity 0.4s ease; cursor: pointer; }
+.ctrl-prev:hover, .ctrl-next:hover { opacity: 1; }
+.ctrl-play { font-size: 40px; cursor: pointer; }
+
+/* ─── Diary Window ──────────────────────────────────── */
+.diary-window {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  width: 50vw;
+  height: 50vh;
+  min-width: 300px;
+  min-height: 200px;
+  z-index: 10001;
+  background-color: rgba(20,20,20,0.4);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: scale(0.9) translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events: none;
+}
+
+.diary-window.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+.diary-window::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 6px, rgba(255,255,255,0.2) 6px);
+}
+
+.diary-header {
+  padding: 12px 15px;
+  background: rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.diary-header:active { cursor: grabbing; }
+
+.diary-content-area {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+  scrollbar-width: none;
+}
+
+.diary-content-area::-webkit-scrollbar { display: none; }
+
+.diary-content-area a { color: #67cae2; }
+.diary-content-area img { max-width: 100%; border-radius: 8px; margin: 8px 0; }
+.diary-content-area p { margin-bottom: 12px; line-height: 1.6; }
+.diary-content-area h1, .diary-content-area h2, .diary-content-area h3 { margin: 16px 0 8px; }
+
+.close-diary {
+  opacity: 0.6;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  cursor: pointer !important;
+}
+
+.close-diary:hover { opacity: 1; color: #ff5f56; }
+
+/* ─── Fade-in animation helper ──────────────────────── */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+.fade-in-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
